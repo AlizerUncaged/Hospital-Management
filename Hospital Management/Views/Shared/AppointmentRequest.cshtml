@@ -1,0 +1,31 @@
+﻿@using Hospital_Management.Data
+@using Microsoft.EntityFrameworkCore
+
+@inject ApplicationDbContext DbContext
+
+@{
+    Dentist? doctor = null;
+
+    if (ViewData.TryGetValue("Dentist", out var dentist))
+    {
+        if (dentist is Dentist actualDentist)
+        {
+            doctor = actualDentist;
+        }
+    }
+
+    IEnumerable<AppointmentModel> appointments = await DbContext.Appointments.Where(x => x.Dentist == null).ToListAsync();
+
+}
+
+@foreach (var patient in appointments)
+{
+    <div class="alert alert-success" role="alert">
+        <h4 class="alert-heading">@patient.Patient.UserName</h4>
+        <p>@patient.Note</p>
+        <hr>
+        <p class="mb-0">Requested at @patient.DateCreated</p>
+        <a href="/approve/@patient.AppointmentID" class="btn btn-primary">Approve</a>
+        <a href="/cancel/@patient.AppointmentID" class="btn btn-danger">Cancel</a>
+    </div>
+}
