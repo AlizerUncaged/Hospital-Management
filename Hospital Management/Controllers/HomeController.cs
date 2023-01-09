@@ -159,6 +159,7 @@ public class HomeController : Controller
 
     public async Task<IActionResult> Index()
     {
+        
         await _roleCreation.CreateRolesAsync();
 
         if (!await IsUserValid(User))
