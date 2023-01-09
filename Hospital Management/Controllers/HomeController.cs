@@ -1,7 +1,9 @@
 ﻿using System.Diagnostics;
+using System.Security.Claims;
 using Hospital_Management.Data;
 using Microsoft.AspNetCore.Mvc;
 using Hospital_Management.Models;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -33,7 +35,7 @@ public class HomeController : Controller
 
         await _dbContext.SaveChangesAsync();
 
-        return RedirectPermanent("/");
+        return Redirect("/");
     }
 
     [HttpGet("/cancel/{appointmentId}/{reason}")]
@@ -48,7 +50,7 @@ public class HomeController : Controller
 
         await _dbContext.SaveChangesAsync();
 
-        return RedirectPermanent("/dentistdashboard");
+        return Redirect("/dentistdashboard");
     }
 
     [HttpGet("/approve/{appointmentId}")]
@@ -67,7 +69,7 @@ public class HomeController : Controller
 
         await _dbContext.SaveChangesAsync();
 
-        return RedirectPermanent("/dentistdashboard");
+        return Redirect("/dentistdashboard");
     }
 
     [HttpGet("/register")]
@@ -75,12 +77,25 @@ public class HomeController : Controller
     {
         return View();
     }
+    
+
+    [HttpGet("/aboutus")]
+    public async Task<IActionResult> AboutUs()
+    {
+        return View();
+    }
+    [HttpGet("/services")]
+    public async Task<IActionResult> Services()
+    {
+        return View();
+    }
+
     [HttpGet("/registerPatient")]
     public async Task<IActionResult> RegisterPatient()
     {
         return View();
     }
-    
+
     [HttpGet("/registerAppointment")]
     public async Task<IActionResult> RegisterAppointment()
     {
@@ -110,31 +125,61 @@ public class HomeController : Controller
     {
         var currentUser = await _userManager.GetUserAsync(User);
 
-        var currentDoctor =
+        var currentPatient =
             await _dbContext.Patients.FirstOrDefaultAsync(x => x.Id == currentUser.Id);
 
-        ViewData["Patient"] = currentDoctor;
+        ViewData["Patient"] = currentPatient;
         return View();
+    }
+
+    public async Task<bool> IsUserValid(ClaimsPrincipal user)
+    {
+        var currentUser = await _userManager.GetUserAsync(User);
+
+        if (currentUser is null)
+            return false;
+
+        // Get the user's email from their claims
+        var emailClaim = user.FindFirst(ClaimTypes.Email);
+        if (emailClaim == null)
+        {
+            return false;
+        }
+
+        // Look up the user in the database by their email
+        var userInDb = await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == emailClaim.Value);
+        if (userInDb == null)
+        {
+            return false;
+        }
+
+        // The user was found in the database, so they are valid
+        return true;
     }
 
     public async Task<IActionResult> Index()
     {
         await _roleCreation.CreateRolesAsync();
 
+        if (!await IsUserValid(User))
+        {
+            await HttpContext.SignOutAsync();
+        }
+
         // Send to dashboards.
         if (User.IsInRole("Dentist"))
         {
-            return RedirectPermanent("/dentistdashboard");
+            return Redirect("/dentistdashboard");
         }
 
         if (User.IsInRole("Patient"))
         {
-            return RedirectPermanent("/patientdashboard");
+            return Redirect("/patientdashboard");
         }
 
         if (User.IsInRole("Admin"))
         {
-            return RedirectPermanent("/dashboard");
+            return Redirect("/dashboard");
         }
 
         return View();

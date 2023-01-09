@@ -17,6 +17,554 @@
       "PackagePath": "staticwebassets\\image-removebg-preview (7).png"
     },
     {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\Picture1.png",
+      "PackagePath": "staticwebassets\\images\\Picture1.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\Picture1.svg",
+      "PackagePath": "staticwebassets\\images\\Picture1.svg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\aboutus\\Picture10.png",
+      "PackagePath": "staticwebassets\\images\\aboutus\\Picture10.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\aboutus\\Picture11.png",
+      "PackagePath": "staticwebassets\\images\\aboutus\\Picture11.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\aboutus\\Picture4.png",
+      "PackagePath": "staticwebassets\\images\\aboutus\\Picture4.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\aboutus\\Picture5.png",
+      "PackagePath": "staticwebassets\\images\\aboutus\\Picture5.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\aboutus\\Picture6.png",
+      "PackagePath": "staticwebassets\\images\\aboutus\\Picture6.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\aboutus\\Picture7.png",
+      "PackagePath": "staticwebassets\\images\\aboutus\\Picture7.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\aboutus\\Picture8.png",
+      "PackagePath": "staticwebassets\\images\\aboutus\\Picture8.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\aboutus\\Picture9.png",
+      "PackagePath": "staticwebassets\\images\\aboutus\\Picture9.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\appointment\\Picture41.png",
+      "PackagePath": "staticwebassets\\images\\appointment\\Picture41.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\colorschememapping.xml",
+      "PackagePath": "staticwebassets\\images\\colorschememapping.xml"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\filelist.xml",
+      "PackagePath": "staticwebassets\\images\\filelist.xml"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\header.htm",
+      "PackagePath": "staticwebassets\\images\\header.htm"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image001.png",
+      "PackagePath": "staticwebassets\\images\\image001.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image002.jpg",
+      "PackagePath": "staticwebassets\\images\\image002.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image003.png",
+      "PackagePath": "staticwebassets\\images\\image003.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image004.png",
+      "PackagePath": "staticwebassets\\images\\image004.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image005.jpg",
+      "PackagePath": "staticwebassets\\images\\image005.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image006.png",
+      "PackagePath": "staticwebassets\\images\\image006.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image007.jpg",
+      "PackagePath": "staticwebassets\\images\\image007.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image008.png",
+      "PackagePath": "staticwebassets\\images\\image008.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image009.jpg",
+      "PackagePath": "staticwebassets\\images\\image009.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image010.jpg",
+      "PackagePath": "staticwebassets\\images\\image010.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image011.jpg",
+      "PackagePath": "staticwebassets\\images\\image011.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image012.jpg",
+      "PackagePath": "staticwebassets\\images\\image012.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image013.jpg",
+      "PackagePath": "staticwebassets\\images\\image013.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image014.jpg",
+      "PackagePath": "staticwebassets\\images\\image014.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image015.jpg",
+      "PackagePath": "staticwebassets\\images\\image015.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image016.jpg",
+      "PackagePath": "staticwebassets\\images\\image016.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image017.jpg",
+      "PackagePath": "staticwebassets\\images\\image017.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image018.jpg",
+      "PackagePath": "staticwebassets\\images\\image018.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image019.png",
+      "PackagePath": "staticwebassets\\images\\image019.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image020.png",
+      "PackagePath": "staticwebassets\\images\\image020.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image021.png",
+      "PackagePath": "staticwebassets\\images\\image021.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image022.png",
+      "PackagePath": "staticwebassets\\images\\image022.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image023.png",
+      "PackagePath": "staticwebassets\\images\\image023.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image024.png",
+      "PackagePath": "staticwebassets\\images\\image024.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image025.png",
+      "PackagePath": "staticwebassets\\images\\image025.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image026.jpg",
+      "PackagePath": "staticwebassets\\images\\image026.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image027.jpg",
+      "PackagePath": "staticwebassets\\images\\image027.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image028.jpg",
+      "PackagePath": "staticwebassets\\images\\image028.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image029.png",
+      "PackagePath": "staticwebassets\\images\\image029.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image030.jpg",
+      "PackagePath": "staticwebassets\\images\\image030.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image031.jpg",
+      "PackagePath": "staticwebassets\\images\\image031.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image032.jpg",
+      "PackagePath": "staticwebassets\\images\\image032.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image033.jpg",
+      "PackagePath": "staticwebassets\\images\\image033.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image034.jpg",
+      "PackagePath": "staticwebassets\\images\\image034.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image035.jpg",
+      "PackagePath": "staticwebassets\\images\\image035.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image036.jpg",
+      "PackagePath": "staticwebassets\\images\\image036.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image037.png",
+      "PackagePath": "staticwebassets\\images\\image037.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image038.png",
+      "PackagePath": "staticwebassets\\images\\image038.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image039.png",
+      "PackagePath": "staticwebassets\\images\\image039.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image040.png",
+      "PackagePath": "staticwebassets\\images\\image040.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image041.png",
+      "PackagePath": "staticwebassets\\images\\image041.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image042.png",
+      "PackagePath": "staticwebassets\\images\\image042.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image043.png",
+      "PackagePath": "staticwebassets\\images\\image043.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image044.png",
+      "PackagePath": "staticwebassets\\images\\image044.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image045.png",
+      "PackagePath": "staticwebassets\\images\\image045.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image046.png",
+      "PackagePath": "staticwebassets\\images\\image046.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image047.png",
+      "PackagePath": "staticwebassets\\images\\image047.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image048.png",
+      "PackagePath": "staticwebassets\\images\\image048.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image049.png",
+      "PackagePath": "staticwebassets\\images\\image049.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image050.png",
+      "PackagePath": "staticwebassets\\images\\image050.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image051.png",
+      "PackagePath": "staticwebassets\\images\\image051.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image052.jpg",
+      "PackagePath": "staticwebassets\\images\\image052.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image053.jpg",
+      "PackagePath": "staticwebassets\\images\\image053.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image054.jpg",
+      "PackagePath": "staticwebassets\\images\\image054.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image055.jpg",
+      "PackagePath": "staticwebassets\\images\\image055.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image056.jpg",
+      "PackagePath": "staticwebassets\\images\\image056.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image057.jpg",
+      "PackagePath": "staticwebassets\\images\\image057.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image058.png",
+      "PackagePath": "staticwebassets\\images\\image058.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image059.jpg",
+      "PackagePath": "staticwebassets\\images\\image059.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image060.jpg",
+      "PackagePath": "staticwebassets\\images\\image060.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image061.jpg",
+      "PackagePath": "staticwebassets\\images\\image061.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image062.jpg",
+      "PackagePath": "staticwebassets\\images\\image062.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image063.jpg",
+      "PackagePath": "staticwebassets\\images\\image063.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image064.jpg",
+      "PackagePath": "staticwebassets\\images\\image064.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image065.jpg",
+      "PackagePath": "staticwebassets\\images\\image065.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image066.jpg",
+      "PackagePath": "staticwebassets\\images\\image066.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image067.jpg",
+      "PackagePath": "staticwebassets\\images\\image067.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image068.png",
+      "PackagePath": "staticwebassets\\images\\image068.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image069.jpg",
+      "PackagePath": "staticwebassets\\images\\image069.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image070.jpg",
+      "PackagePath": "staticwebassets\\images\\image070.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image071.jpg",
+      "PackagePath": "staticwebassets\\images\\image071.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image072.jpg",
+      "PackagePath": "staticwebassets\\images\\image072.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image073.jpg",
+      "PackagePath": "staticwebassets\\images\\image073.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image074.jpg",
+      "PackagePath": "staticwebassets\\images\\image074.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image075.jpg",
+      "PackagePath": "staticwebassets\\images\\image075.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image076.jpg",
+      "PackagePath": "staticwebassets\\images\\image076.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image077.jpg",
+      "PackagePath": "staticwebassets\\images\\image077.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image078.jpg",
+      "PackagePath": "staticwebassets\\images\\image078.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image079.jpg",
+      "PackagePath": "staticwebassets\\images\\image079.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image080.jpg",
+      "PackagePath": "staticwebassets\\images\\image080.jpg"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image081.png",
+      "PackagePath": "staticwebassets\\images\\image081.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image082.png",
+      "PackagePath": "staticwebassets\\images\\image082.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image083.png",
+      "PackagePath": "staticwebassets\\images\\image083.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image084.png",
+      "PackagePath": "staticwebassets\\images\\image084.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image085.png",
+      "PackagePath": "staticwebassets\\images\\image085.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image086.png",
+      "PackagePath": "staticwebassets\\images\\image086.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image087.png",
+      "PackagePath": "staticwebassets\\images\\image087.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image088.png",
+      "PackagePath": "staticwebassets\\images\\image088.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image089.png",
+      "PackagePath": "staticwebassets\\images\\image089.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\image090.png",
+      "PackagePath": "staticwebassets\\images\\image090.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\item0001.xml",
+      "PackagePath": "staticwebassets\\images\\item0001.xml"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\page5.png",
+      "PackagePath": "staticwebassets\\images\\page5.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\pages\\page6.png",
+      "PackagePath": "staticwebassets\\images\\pages\\page6.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\pages\\page7.png",
+      "PackagePath": "staticwebassets\\images\\pages\\page7.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\props002.xml",
+      "PackagePath": "staticwebassets\\images\\props002.xml"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\services\\Picture12.png",
+      "PackagePath": "staticwebassets\\images\\services\\Picture12.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\services\\Picture13.png",
+      "PackagePath": "staticwebassets\\images\\services\\Picture13.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\services\\Picture14.png",
+      "PackagePath": "staticwebassets\\images\\services\\Picture14.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\services\\Picture15.png",
+      "PackagePath": "staticwebassets\\images\\services\\Picture15.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\services\\Picture16.png",
+      "PackagePath": "staticwebassets\\images\\services\\Picture16.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\services\\Picture17.png",
+      "PackagePath": "staticwebassets\\images\\services\\Picture17.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\services\\Picture18.png",
+      "PackagePath": "staticwebassets\\images\\services\\Picture18.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\services\\Picture19.png",
+      "PackagePath": "staticwebassets\\images\\services\\Picture19.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\services\\Picture20.png",
+      "PackagePath": "staticwebassets\\images\\services\\Picture20.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\services\\Picture21.png",
+      "PackagePath": "staticwebassets\\images\\services\\Picture21.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\services\\Picture22.png",
+      "PackagePath": "staticwebassets\\images\\services\\Picture22.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\services\\Picture23.png",
+      "PackagePath": "staticwebassets\\images\\services\\Picture23.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\services\\Picture24.png",
+      "PackagePath": "staticwebassets\\images\\services\\Picture24.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\services\\Picture25.png",
+      "PackagePath": "staticwebassets\\images\\services\\Picture25.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\services\\Picture26.png",
+      "PackagePath": "staticwebassets\\images\\services\\Picture26.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\services\\Picture27.png",
+      "PackagePath": "staticwebassets\\images\\services\\Picture27.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\services\\Picture28.png",
+      "PackagePath": "staticwebassets\\images\\services\\Picture28.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\services\\Picture29.png",
+      "PackagePath": "staticwebassets\\images\\services\\Picture29.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\services\\Picture30.png",
+      "PackagePath": "staticwebassets\\images\\services\\Picture30.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\smile makeovers\\Picture31.png",
+      "PackagePath": "staticwebassets\\images\\smile makeovers\\Picture31.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\smile makeovers\\Picture32.png",
+      "PackagePath": "staticwebassets\\images\\smile makeovers\\Picture32.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\smile makeovers\\Picture33.png",
+      "PackagePath": "staticwebassets\\images\\smile makeovers\\Picture33.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\smile makeovers\\Picture34.png",
+      "PackagePath": "staticwebassets\\images\\smile makeovers\\Picture34.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\smile makeovers\\Picture35.png",
+      "PackagePath": "staticwebassets\\images\\smile makeovers\\Picture35.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\smile makeovers\\Picture36.png",
+      "PackagePath": "staticwebassets\\images\\smile makeovers\\Picture36.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\smile makeovers\\Picture37.png",
+      "PackagePath": "staticwebassets\\images\\smile makeovers\\Picture37.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\smile makeovers\\Picture38.png",
+      "PackagePath": "staticwebassets\\images\\smile makeovers\\Picture38.png"
+    },
+    {
+      "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\images\\themedata.thmx",
+      "PackagePath": "staticwebassets\\images\\themedata.thmx"
+    },
+    {
       "Id": "E:\\Projects\\Hospital Management\\Hospital Management\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

@@ -72,7 +72,7 @@ public class RegisterController : Controller
 
         await _signInManager.SignInAsync(newEntity.Entity, true);
 
-        return RedirectPermanent("/");
+        return Redirect("/");
     }
 
     [HttpPost("/newAppointment")]
@@ -92,6 +92,6 @@ public class RegisterController : Controller
 
         await _dbContext.SaveChangesAsync();
 
-        return RedirectPermanent("/");
+        return Redirect("/");
     }
 }

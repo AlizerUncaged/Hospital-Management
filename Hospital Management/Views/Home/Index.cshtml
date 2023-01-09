@@ -1,10 +1,96 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <div class="d-flex justify-content-center align-items-center align-middle">
-        To go to your admin dashboard to go <a class="btn btn-primary m-2" href="/dashboard">Dashboard</a> to register a dentist go to <a class="btn btn-primary m-2" href="/register">Register</a>
-    </div>
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <h1 class="display-4">Welcome</h1>
+        <div class="d-flex justify-content-center align-items-center align-middle">
+            To go to your admin dashboard to go <a class="btn btn-primary m-2" href="/dashboard">Dashboard</a> to register a dentist go to <a class="btn btn-primary m-2" href="/register">Register</a>
+        </div>
+    }
+    else
+    {
+        <div class="container row mb-4">
+            <div class="row mb-4">
+                <img class="img-fluid" src="images/Picture1.png"/>
+                <h1 class="text-primary mb-4">Dental Tourism</h1>
+                <p>Come to the Philippines for your dental concerns and you'll be rewarded with solutions and services that are excellently world-class, impressibly affordable, friendly, and comprehensive.</p>
+            </div>
+            <div class="row mb-4">
+                <h1 class="text-primary">Your Complete Dental Care Shop</h1>
+                <hr/>
+                <p>
+                    Extensive dental expertise, truly state-of-the-art, and the best locations in Metro Manila (with <a href="/branches" class="text-primary">dental clinic branches in Makati</a>, Pasay
+                    and Quezon City). Dental World Manila embodies all these, with clients guaranteed to experience and enjoy every such aspect with every service. Headed by Dr. Malony L. Santos of St. Luke's
+                    Medical Center, the Philippines' foremost hospital, Dental Worldanila is your hub for comprehensive and highly specialized dental treatments, such as cosmetic dentistry, TMJ, and periodontics
+                    among others.
+                </p>
+                <a class="btn-primary rounded-3 btn" href="/registerAppointment">Make an Appointment</a>
+            </div>
+            <div class="row mb-4">
+                <h1 class="text-primary">Meet the Dentists</h1>
+                <hr/>
+                <p>
+                    At the helm of Dental World Manila is Dr. Malony L. Santos, an expert clinician with extensive
+                    training in several fields of dentistry. Completing the team are competent dentists with different
+                    specializations, unfailing dental nurse assistants and aides, skilled laboratory technicians,
+                    and dependable staff, all ready to assist patients with any concern.
+                </p>
+                <div class="container row  d-flex justify-content-center">
+                    <div class="text-center align-middle col-4 row">
+                        <img class="img-fluid row" src="/images/image015.jpg"/>
+                        <p class="text-primary h1 row">Dr. Malony Santos</p>
+                    </div>
+                    <div class="text-center align-middle col-4 row">
+                        <img class="img-fluid row" src="/images/image016.jpg"/>
+                        <p class="text-primary h1 row">Dr. Mary Ann Alatraca</p>
+                    </div>
+                    <div class="text-center align-middle col-4 row">
+                        <img class="img-fluid row" src="/images/image015.jpg"/>
+                        <p class="text-primary h1 row">Dr. Agustin Mendoza IV</p>
+                    </div>
+                    <div class="text-center align-middle col-4 row">
+                        <img class="img-fluid row" src="/images/image012.jpg"/>
+                        <p class="text-primary h1 row">
+                            Dr. Genelyn Calixto
+                        </p>
+                    </div>
+                    <div class="text-center align-middle col-4 row">
+                        <img class="img-fluid row" src="/images/image013.jpg"/>
+                        <p class="text-primary h1 row">
+                            Dr. Ronald Joaquico
+                        </p>
+                    </div>
+                    <div class="text-center align-middle col-4 row">
+                        <img class="img-fluid row" src="/images/image018.jpg"/>
+                        <p class="text-primary h1 row">
+                            Dr. Irma Medrano
+                        </p>
+                    </div>
+                </div>
+            </div>
+            @{
+                string rootPath = "wwwroot/images/pages/";
+                string[] imageFiles = Directory.GetFiles(rootPath, "*.png", SearchOption.AllDirectories);
+
+                // Sort the image files by their creation date
+                Array.Sort(imageFiles, (x, y) => File.GetCreationTime(x).CompareTo(File.GetCreationTime(y)));
+
+                foreach (string imageFile in imageFiles)
+                {
+                    
+                    <div class="row mb-4">
+                        <hr/>
+                        <img src="images/pages/@System.IO.Path.GetFileName(imageFile)"/>
+                    </div>
+                }
+            }
+        </div>
+    }
 </div>

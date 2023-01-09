@@ -18,7 +18,9 @@
 
     var patientsSet = DbContext.Patients;
     if (doctor is {})
-        patients = await patientsSet.Where(x => x.Appointments.Any(x => x.Dentist.Id == doctor.Id)).ToListAsync();
+        patients = await patientsSet.Include(x => x.Appointments)
+            .ThenInclude(x => x.Dentist)
+            .Where(x => x.Appointments.Any(y => y.Dentist != null && y.Dentist.Id == doctor.Id)).ToListAsync();
     else
         patients = await patientsSet.OrderByDescending(x => x.RegisterDate).ToListAsync();
 

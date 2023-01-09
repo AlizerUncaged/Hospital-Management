@@ -14,7 +14,10 @@
         }
     }
 
-    IEnumerable<AppointmentModel> appointments = await DbContext.Appointments.Where(x => x.Dentist == null).ToListAsync();
+    IEnumerable<AppointmentModel> appointments = await DbContext.Appointments
+        .Include(x => x.Patient)
+        .Include(x => x.Dentist)
+        .Where(x => x.Dentist == null).ToListAsync();
 
 }
 

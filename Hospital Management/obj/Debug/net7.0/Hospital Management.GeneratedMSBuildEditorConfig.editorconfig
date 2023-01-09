@@ -40,6 +40,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[E:/Projects/Hospital Management/Hospital Management/Views/Home/AboutUs.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBYm91dFVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/Projects/Hospital Management/Hospital Management/Views/Home/Dashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxEYXNoYm9hcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -70,6 +74,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [E:/Projects/Hospital Management/Hospital Management/Views/Home/RegisterPatient.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxSZWdpc3RlclBhdGllbnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Projects/Hospital Management/Hospital Management/Views/Home/Services.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTZXJ2aWNlcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Projects/Hospital Management/Hospital Management/Views/Home/SmileMakeovers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTbWlsZU1ha2VvdmVycy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/Projects/Hospital Management/Hospital Management/Views/Shared/AppointmentRequest.cshtml]

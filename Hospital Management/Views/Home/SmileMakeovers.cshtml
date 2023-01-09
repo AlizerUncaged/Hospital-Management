@@ -1,0 +1,28 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <div class="container row mb-4">
+        @{
+            string rootPath = "wwwroot/images/smile makeovers/";
+            string[] imageFiles = Directory.GetFiles(rootPath, "*.png", SearchOption.AllDirectories);
+
+            // Sort the image files by their creation date
+            Array.Sort(imageFiles, (x, y) => File.GetCreationTime(x).CompareTo(File.GetCreationTime(y)));
+
+            foreach (string imageFile in imageFiles)
+            {
+                <div class="row mb-4">
+                    <hr/>
+                    <img src="images/smile makeovers/@System.IO.Path.GetFileName(imageFile)"/>
+                </div>
+            }
+        }
+    </div>
+
+</div>
