@@ -6,12 +6,12 @@ namespace Hospital_Management.Models
     {
         [Key]
         [Required]
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         [Required]
-        public String Name { get; set; }
+        public String? Name { get; set; }
 
         [Required]
-        public string Value { get; set; }
+        public string? Value { get; set; }
     }
 }
