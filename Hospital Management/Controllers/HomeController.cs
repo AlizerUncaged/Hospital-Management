@@ -25,65 +25,47 @@ public class HomeController : Controller
         _userManager = userManager;
     }
 
-    [HttpGet("/delete/{appointmentId}")]
-    public async Task<IActionResult> DeleteAppointment(int appointmentId)
+
+    [HttpGet("/clearCookies")]
+    public async Task<IActionResult> ClearCookies()
     {
-        var appointment = await _dbContext.Appointments.AsNoTracking()
-            .FirstOrDefaultAsync(x => x.AppointmentID == appointmentId);
+        foreach (var cookie in HttpContext.Request.Cookies)
+        {
+            HttpContext.Response.Cookies.Delete(cookie.Key);
+        }
 
-        _dbContext.Appointments.Remove(appointment);
-
-        await _dbContext.SaveChangesAsync();
-
-        return Redirect("/");
+        return Content("Cookies Cleared");
     }
 
-    [HttpGet("/cancel/{appointmentId}/{reason}")]
-    public async Task<IActionResult> CancelAppointment(int appointmentId, string reason)
-    {
-        var appointment = await _dbContext.Appointments.AsNoTracking()
-            .FirstOrDefaultAsync(x => x.AppointmentID == appointmentId);
-
-        appointment.IsCancelled = true;
-
-        _dbContext.Appointments.Update(appointment);
-
-        await _dbContext.SaveChangesAsync();
-
-        return Redirect("/dentistdashboard");
-    }
-
-    [HttpGet("/approve/{appointmentId}")]
-    public async Task<IActionResult> AcceptAppointment(int appointmentId)
-    {
-        var appointment = await _dbContext.Appointments.AsNoTracking()
-            .FirstOrDefaultAsync(x => x.AppointmentID == appointmentId);
-
-        appointment.IsCancelled = false;
-
-        var currentUser = await _userManager.GetUserAsync(User);
-
-        appointment.Dentist = await _dbContext.Dentists.FirstOrDefaultAsync(x => x.Id == currentUser.Id);
-
-        _dbContext.Appointments.Update(appointment);
-
-        await _dbContext.SaveChangesAsync();
-
-        return Redirect("/dentistdashboard");
-    }
 
     [HttpGet("/register")]
     public async Task<IActionResult> RegisterDoctor()
     {
         return View();
     }
-    
+
+    [HttpGet("/invoice")]
+    public async Task<IActionResult> Receipt([FromQuery] double paid)
+    {
+        
+        var user = await _userManager.GetUserAsync(User);
+        var firstName = user.UserName;
+        var change = paid - 600;
+
+        ViewData["FName"] = firstName;
+        ViewData["Change"] = change;
+        ViewData["Paid"] = paid;
+
+        return View();
+    }
+
 
     [HttpGet("/aboutus")]
     public async Task<IActionResult> AboutUs()
     {
         return View();
     }
+
     [HttpGet("/services")]
     public async Task<IActionResult> Services()
     {
@@ -97,7 +79,7 @@ public class HomeController : Controller
     }
 
     [HttpGet("/registerAppointment")]
-    public async Task<IActionResult> RegisterAppointment()
+    public async Task<IActionResult> Appointment()
     {
         return View();
     }
@@ -109,7 +91,7 @@ public class HomeController : Controller
     }
 
     [HttpGet("/dentistdashboard")]
-    public async Task<IActionResult> DentistDashboard()
+    public async Task<IActionResult> Dentists()
     {
         var currentUser = await _userManager.GetUserAsync(User);
 
@@ -121,7 +103,7 @@ public class HomeController : Controller
     }
 
     [HttpGet("/patientdashboard")]
-    public async Task<IActionResult> PatientDashboard()
+    public async Task<IActionResult> Patient()
     {
         var currentUser = await _userManager.GetUserAsync(User);
 
@@ -159,7 +141,6 @@ public class HomeController : Controller
 
     public async Task<IActionResult> Index()
     {
-        
         await _roleCreation.CreateRolesAsync();
 
         if (!await IsUserValid(User))

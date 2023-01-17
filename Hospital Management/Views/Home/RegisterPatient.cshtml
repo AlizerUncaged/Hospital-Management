@@ -18,15 +18,24 @@
                 <label for="address">Address</label>
             </div>
             <div class="form-floating mb-3">
-                <input type="text" id="birthdate" name="birthdate" class="form-control" aria-required="true"/>
+                <input type="date" id="birthdate" name="birthdate" class="form-control" aria-required="true"/>
                 <label for="birthdate">Birthdate</label>
             </div>
-            <div class="form-floating mb-3">
-                <input type="text" id="gender" name="gender" class="form-control" aria-required="true"/>
-                <label for="gender">Gender</label>
+            <div class="row mb-3">
+                <label class="me-2 form-label">Gender</label>
+                <div class="d-flex flex-row">
+                    <div class="form-check me-2">
+                        <input class="form-check-input" type="radio" id="maleg" name="gender" value="male">
+                        <label for="maleg" class="form-check-label">Male</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" id="femaleg" name="gender" value="female">
+                        <label for="femaleg" class="form-check-label">Female</label>
+                    </div>
+                </div>
             </div>
             <div class="form-floating mb-3">
-                <input type="text" id="cellphoneNumber" name="cellphoneNumber" class="form-control" aria-required="true"/>
+                <input type="number" id="cellphoneNumber" name="cellphoneNumber" class="form-control" aria-required="true"/>
                 <label for="cellphoneNumber">Cellphone Number</label>
             </div>
             <div class="form-floating mb-3">

@@ -13,6 +13,7 @@
         }
     }
 
+    ViewData["Title"] = "Patient Dashboard";
 
     IEnumerable<AppointmentModel> appointmentses = await DbContext.Appointments.Where(x => x.Patient.Id == patient.Id).ToListAsync();
     IEnumerable<AppointmentModel> approvedAppointments = await DbContext.Appointments.Include(x => x.Dentist).Where(x => x.Dentist != null).ToListAsync();
@@ -47,7 +48,7 @@
             <p>@appointments.Note</p>
             <hr>
             <p class="mb-0">Created at @appointments.DateCreated</p>
-            <a href="/delete/@appointments.AppointmentID" class="btn btn-danger">Delete</a>
+            <a href="/delete/@appointments.AppointmentID" class="btn btn-danger m-2">Delete</a>
         </div>
     }
 </div>

@@ -76,7 +76,7 @@ public class RegisterController : Controller
     }
 
     [HttpPost("/newAppointment")]
-    public async Task<IActionResult> RegisterPatient([FromForm] string description)
+    public async Task<IActionResult> RegisterPatient([FromForm] string description, [FromForm] double paid)
     {
         var currentUser = await _userManager.GetUserAsync(User);
 
@@ -92,6 +92,6 @@ public class RegisterController : Controller
 
         await _dbContext.SaveChangesAsync();
 
-        return Redirect("/");
+        return Redirect($"/Invoice?paid={paid}");
     }
 }
