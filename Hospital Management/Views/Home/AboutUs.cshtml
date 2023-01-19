@@ -8,21 +8,54 @@
 
 <div class="text-center">
     <div class="container row mb-4">
-        @{
-            string rootPath = "wwwroot/images/aboutus/";
-            string[] imageFiles = Directory.GetFiles(rootPath, "*.png", SearchOption.AllDirectories);
+        <h1 class="text-primary">
+            <strong>About Dental World Manila</strong>
+        </h1>
+        <p>
+            Extensive dental expertise, truly state-of-the-art, and the best locations in Manila. Dental World Manila
+            embodies all these, with clients guaranteed to experience and enjoy every such aspect with every service.
+            Headed by <span class="text-primary">Dr. Malony L. Santos of St. Luke’s Medical Center</span>, the Philippines’s foremost hospital,
+            <b>
+                Dental
+                World Manila
+            </b> is your hub for comprehensive and highly <span class="text-primary">Dspecialized dental treatments</span>, such as cosmetic
+            dentistry, dental implants,TMJ, and periodontics, among others.
+        </p>
+    </div>
+    <div class="container row">
+        <img class="m-4" src="/images/image052.jpg"/>
+    </div>
+    <div class="container row">
+        <p>
+            We have catered to high-profile clients, as well as returning Filipinos and foreign travelers who visit the country just to get the best dental treatment. You can call them
+            ‘<span class="text-primary">dental tourists</span>’ and they’ve chosen Dental World as their primary destination with great fulfillment.
+            They keep coming back to the clinic perhaps because of our team of proficient dentists who have trained locally and abroad. But our doctors are matched only by the latest and most reliable facilities and equipment, including our own dental laboratory, so those definitely play a part as well. Or maybe it’s that Dental World is located in key areas in Manila:
+        </p>
+        <ul class="list-group m-4 p-4">
+            <li class="list-group-item">St. Luke’s Medical Center Quezon City</li>
+            <li class="list-group-item">Glorietta Mall at Makati, the country’s financial center</li>
+            <li class="list-group-item">Centuria Medical Makati, is a one‐stop, outpatient medical-IT facility located at the heart of Century City, Makati</li>
+            <li class="list-group-item">SM Mall of Asia Complex, the biggest commercial, entertainment, and business development in the city</li>
+        </ul>
+        <p>Most likely, our satisfied clientele has come to trust us for all these reasons. Make an appointment at our clinic, so you can also enjoy the highest quality and most complete dental service that you seek.</p>
 
-            // Sort the image files by their creation date
-            Array.Sort(imageFiles, (x, y) => File.GetCreationTime(x).CompareTo(File.GetCreationTime(y)));
-
-            foreach (string imageFile in imageFiles)
-            {
-                <div class="row mb-4">
-                    <hr/>
-                    <img src="images/aboutus/@System.IO.Path.GetFileName(imageFile)"/>
-                </div>
-            }
-        }
+        <img class="m-4" src="/images/image055.jpg"/>
     </div>
 
+    <div class="container row mb-4">
+        <h1 class="text-primary">
+            <strong>How Dental World Manila Came To Be</strong>
+        </h1>
+        <p>
+            Dental World Manila is the consolidated brand name of 3 dental centers headed by Dr. Malony L. Santos. The first one is MLS Dental Clinic, established in 1996 at St. Luke’s Medical Center in Quezon City, where Dr. Santos started his practice. The second is the ML Santos Dental Cosmetics and TMJ Center at the SM Mall of Asia in Pasay City. This clinic was established in 2006 by Dr. Santos with a friend who is now based in Australia. The third clinic is the Glorietta Dental Center in Makati, which Dr. Santos bought from a dentist who had migrated abroad.
+            In July 2012, Dr. Malony placed the 3 clinics in one name, with all shares now owned by him. The trademark “Dental World Manila” has been registered at the Intellectual Property Office of the Philippines, but ML Santos Dental Cosmetics and TMJ Center remains as the trade name of the 3 clinics registered at the Department of Trade and Industry.
+            Dental World Manila is proud to have as its client’s prominent business executives, politicians, and showbiz personalities. It also has made loyal customers out of balikbayans and dental tourists from the US, Australia, Guam, Canada, Norway, Germany, Italy, France, and Switzerland, among others.
+
+        </p>
+        <img class="m-4" src="/images/image056.jpg"/>
+        <p>
+            Our vision, mission, and values are focused on making patients happy and satisfied through exceptional quality work and 100% professional service.
+
+        </p>
+    </div>
 </div>

@@ -7,22 +7,43 @@
 }
 
 <div class="text-center">
+
     <div class="container row mb-4">
-        @{
-            string rootPath = "wwwroot/images/smile makeovers/";
-            string[] imageFiles = Directory.GetFiles(rootPath, "*.png", SearchOption.AllDirectories);
-
-            // Sort the image files by their creation date
-            Array.Sort(imageFiles, (x, y) => File.GetCreationTime(x).CompareTo(File.GetCreationTime(y)));
-
-            foreach (string imageFile in imageFiles)
-            {
-                <div class="row mb-4">
-                    <hr/>
-                    <img src="images/smile makeovers/@System.IO.Path.GetFileName(imageFile)"/>
-                </div>
-            }
-        }
+        <h1 class="text-primary">
+            <strong>Smile Makeovers</strong>
+        </h1>
+        <img src="/images/image070.jpg" class="m-4"/>
+        <p>No need to scrimp on your smile. If you are the unhappy with the way you forget those winsome curves in flashing those pearly whites because of a dental condition, there's always a reason to smile. We at Dental World Manila provides everyone with the right reasons to celebrate life by crafting that smile that will light up your world.</p>
     </div>
-
+    <div class="container row mb-4">
+        <h4 class="text-primary">
+            <strong>Porcelain Veneers</strong>
+        </h4>
+        <img src="/images/image072.jpg" class="m-4"/>
+    </div>
+    <div class="container row mb-4">
+        <h4 class="text-primary">
+            <strong>Porcelain Crowns</strong>
+        </h4>
+        <img src="/images/image074.jpg" class="m-4"/>
+        <img src="/images/image075.jpg" class="m-4"/>
+    </div>
+    <div class="container row mb-4">
+        <h4 class="text-primary">
+            <strong>Dental Implant</strong>
+        </h4>
+        <img src="/images/image078.jpg" class="m-4"/>
+    </div>
+    <div class="container row mb-4">
+        <h4 class="text-primary">
+            <strong>Zirconia Crowns</strong>
+        </h4>
+        <img src="/images/image079.jpg" class="m-4"/>
+    </div>
+    <div class="container row mb-4">
+        <h4 class="text-primary">
+            <strong>Cosmetic Gum Surgery and Composite Veneers</strong>
+        </h4>
+        <img src="/images/image082.png" class="m-4"/>
+    </div>
 </div>

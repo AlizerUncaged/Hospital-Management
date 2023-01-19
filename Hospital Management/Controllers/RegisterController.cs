@@ -50,13 +50,13 @@ public class RegisterController : Controller
 
     [HttpPost("/registerPatient")]
     public async Task<IActionResult> RegisterPatient([FromForm] string name, [FromForm] string address,
-        [FromForm] string birthdate, [FromForm] string gender,
+        [FromForm] string birthdate, [FromForm] string gender, [FromForm] string email,
         [FromForm] string cellphoneNumber, [FromForm] string guardian, [FromForm] string password)
     {
         var dentist = new Patient()
         {
             Name = name, Address = address, Gender = gender, Birthdate = birthdate, CellphoneNumber = cellphoneNumber,
-            Guardian = guardian, UserName = name
+            Guardian = guardian, UserName = name, Email = email
         };
 
         var newEntity = await _dbContext.Patients.AddAsync(dentist);

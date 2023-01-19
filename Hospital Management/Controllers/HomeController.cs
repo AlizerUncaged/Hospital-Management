@@ -43,6 +43,11 @@ public class HomeController : Controller
     {
         return View();
     }
+    [HttpGet("/smile-makeovers")]
+    public async Task<IActionResult> SmileMakeovers()
+    {
+        return View();
+    }
 
     [HttpGet("/invoice")]
     public async Task<IActionResult> Receipt([FromQuery] double paid)
@@ -62,6 +67,12 @@ public class HomeController : Controller
 
     [HttpGet("/aboutus")]
     public async Task<IActionResult> AboutUs()
+    {
+        return View();
+    }
+    
+    [HttpGet("/patients")]
+    public async Task<IActionResult> PatientList()
     {
         return View();
     }

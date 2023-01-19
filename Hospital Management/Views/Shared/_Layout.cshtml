@@ -77,13 +77,7 @@
                             <a class="nav-link text-dark" href="/services">Services</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Smile Makeovers</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Appointment</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Message</a>
+                            <a class="nav-link text-dark" href="/smile-makeovers">Smile Makeovers</a>
                         </li>
                     }
                 </ul>
@@ -97,15 +91,47 @@
         <i class="bi bi-chat-fill"></i> Chat
     </button>
 </div>
-<div class="container">
-    <main role="main" class="pb-3">
-        @RenderBody()
-    </main>
-</div>
+
+@if (User.IsInRole("Admin"))
+{
+    <div class="container-fluid row mb-2">
+        <div class="col-4 col-md-2 container-fluid">
+
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li class="nav-item">
+                    <a href="/" class="nav-link"><i class="bi bi-house"></i> Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/register" class="nav-link"><i class="bi bi-person-fill-add"></i> Register Dentist</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/patients" class="nav-link"><i class="bi bi-people"></i> Patients</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"><i class="bi bi-file-earmark-image-fill"></i> Doctor Images</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"><i class="bi bi-chat-dots"></i> Messages</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-8 col-md-10">
+            @RenderBody()
+        </div>
+    </div>
+}
+else
+{
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+}
 
 <footer class="border-top footer text-muted">
     <div class="container">
-        &copy; 2022 - Dentist
+        &copy; @DateTime.Now.Year - Dentist World Manila
     </div>
 </footer>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>

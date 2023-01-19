@@ -8,9 +8,11 @@ namespace Hospital_Management.Models
     {
         public bool Blocked { get; set; }
 
-        public virtual List<AppointmentModel> Appointments { get; set; }
+        public virtual List<AppointmentModel> Appointments { get; set; } = new List<AppointmentModel>();
 
         public string Name { get; set; }
+
+        public string FullName => UserName;
 
         public string Address { get; set; }
 
@@ -21,6 +23,9 @@ namespace Hospital_Management.Models
         public string Guardian { get; set; }
 
         public string CellphoneNumber { get; set; }
+        
+
+        public List<Chat> Chats { get; set; } = new();
 
 
         public bool? IsBraced { get; set; }

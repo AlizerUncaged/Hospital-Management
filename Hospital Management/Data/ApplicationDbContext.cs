@@ -9,7 +9,9 @@ public class ApplicationDbContext : IdentityDbContext
     public DbSet<Patient> Patients { get; set; }
 
     public DbSet<Dentist> Dentists { get; set; }
-    
+
+    public DbSet<Chat> Chats { get; set; }
+
     public DbSet<MedicinePayment> MedicinePayments { get; set; }
 
     public DbSet<AppointmentModel> Appointments { get; set; }
