@@ -1,18 +1,58 @@
-﻿@{
+﻿@using Hospital_Management.Utilities
+@{
     ViewData["Title"] = "New Appointment";
 }
-
-<h1>@ViewData["Title"]</h1>
-
 <div class="row">
     <div class="container">
         <form id="registerForm" action="/newAppointment" method="post">
-            <h2>Create a new appointment.</h2>
+            <h2 class="mt-2">Create a new appointment.</h2>
+            <p>
+                Due to COVID-19 pandemic we are strictly by appointment only until further notice. We can accommodate 4
+                to 5 patients only per branch per day. Please answer the questionnaire. Print, sign and bring it on the
+                date of your appointment. This will serve also as proof of appointment. We will confirm your appointment
+                via email or call 2 to 3 days before your appointment date. Please take note of the following
+            </p>
+            <ul>
+                <li>
+                    Wearing face mask is a requirement
+                </li>
+                <li>
+                    Companion is not allowed inside the clinic and treatment room except for minor
+                </li>
+                <li>
+                    We encourage you to make the clinic as your first destination for the day
+                </li>
+                <li>
+                    Wearing shoes with lace is not recommended when you come to the clinic
+                </li>
+                <li>
+                    Patient is encouraging to bring one bag only and wear minimal jewelry
+                </li>
+            </ul>
             <hr/>
-
             <div class="form-floating mb-3">
-                <textarea style="height: 150px;" id="desc" rows="10" type="text" name="description" class="form-control" autocomplete="username" aria-required="true" placeholder=""></textarea>
-                <label for="desc">Full Description</label>
+                <input id="birthdate-id" type="date" name="date" class="form-control" aria-required="true"/>
+                <label for="birthdate-id">Date of Visit</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input id="time-id" type="time" name="time" class="form-control" aria-required="true"/>
+                <label for="time-id">Time of Visit</label>
+            </div>
+            <div class="form-floating mb-3">
+                <textarea style="height: 150px;" id="desc" rows="5" type="text" name="description" class="form-control" autocomplete="username" aria-required="true" placeholder=""></textarea>
+                <label for="desc">Message</label>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label form-control">Your Concerns</label>
+                @foreach (var i in new[] { "braces", "cleaning", "consultation", "crown", "filling", "teeth-whitening", "tooth extraction", "veneers", "x-ray" })
+                {
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="@i" name="concerns[]" value="@i">
+                        <label class="form-check-label" for="@i">@i.Replace("-", " ").FirstCharToUpper()</label>
+                        <br>
+                    </div>
+                }
             </div>
 
             <button id="registerSubmit" type="button" class="w-100 btn btn-lg btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-wallet-fill"></i> Pay</button>

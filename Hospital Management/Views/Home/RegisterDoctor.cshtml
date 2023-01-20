@@ -1,12 +1,9 @@
 ﻿@{
     ViewData["Title"] = "Register Dentist";
 }
-
-<h1>@ViewData["Title"]</h1>
-
-<div class="row">
+<div class="row m-4">
     <div class="container">
-        <form id="registerForm" action="/registerDoctor" method="post">
+        <form id="registerForm" action="/registerDoctor" method="post" enctype="multipart/form-data">
             <h2>Create a new dentist account.</h2>
             <hr/>
             <div class="form-floating mb-3">
@@ -37,6 +34,10 @@
             <div class="form-floating mb-3">
                 <input id="cellphonen" type="text" name="cellphoneNumber" class="form-control" aria-required="true"/>
                 <label for="cellphonen">Cellphone Number</label>
+            </div>
+            <div class="mb-3">
+                <input id="image" type="file" name="image" class="form-control" aria-required="true"/>
+                <label for="image">Doctor's Image</label>
             </div>
             <div class="form-floating mb-3">
                 <input id="licensenumber" type="text" name="licenseNumber" class="form-control" aria-required="true"/>

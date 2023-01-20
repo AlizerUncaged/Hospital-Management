@@ -26,29 +26,39 @@
 </div>
 
 <div class="container row">
-    <h2>Your <strong>Approved</strong> Appointments</h2>
-    @foreach (var appointments in approvedAppointments)
+    @if (approvedAppointments.Any())
     {
-        <div class="alert alert-success" role="alert">
-            <h4 class="alert-heading">Dr. @appointments.Dentist.Name</h4>
-            <p>@appointments.Note</p>
-            <hr>
-            <p class="mb-0">Created at @appointments.DateCreated</p>
-            <a href="/delete/@appointments.AppointmentID" class="btn btn-danger">Delete</a>
-        </div>
+        <h2>Your <strong>Approved</strong> Appointments</h2>
+        @foreach (var appointments in approvedAppointments)
+        {
+            <div class="alert alert-success" role="alert">
+                <h4 class="alert-heading">Dr. @appointments.Dentist.Name</h4>
+                <p>@appointments.Note</p>
+                <hr>
+                <p class="mb-0">Created at @appointments.DateCreated</p>
+                <a href="/delete/@appointments.AppointmentID" class="btn btn-danger">Delete</a>
+            </div>
+        }
     }
 </div>
 
 <div class="container row">
-    <h2>Your Requested Appointments</h2>
-    @foreach (var appointments in appointmentses)
+    @if (appointmentses.Any())
     {
-        <div class="alert alert-success" role="alert">
-            <h4 class="alert-heading"></h4>
-            <p>@appointments.Note</p>
-            <hr>
-            <p class="mb-0">Created at @appointments.DateCreated</p>
-            <a href="/delete/@appointments.AppointmentID" class="btn btn-danger m-2">Delete</a>
-        </div>
+        <h2>Your Requested Appointments</h2>
+        @foreach (var appointments in appointmentses)
+        {
+            <div class="alert alert-success" role="alert">
+                <h4 class="alert-heading"></h4>
+                <p>@appointments.Note</p>
+                <hr>
+                <p class="mb-0">Created at @appointments.DateCreated</p>
+                <a href="/delete/@appointments.AppointmentID" class="btn btn-danger m-2">Delete</a>
+            </div>
+        }
+    }
+    else
+    {
+        <p>You have no requested appointments, request one now!</p>
     }
 </div>

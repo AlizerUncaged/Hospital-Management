@@ -24,17 +24,10 @@ namespace Hospital_Management.Models
 
         public string CellphoneNumber { get; set; }
         
+        public string? Tag { get; set; }
+        
 
         public List<Chat> Chats { get; set; } = new();
-
-
-        public bool? IsBraced { get; set; }
-        public bool? IsPasta { get; set; }
-
-        public string? FullInfo { get; set; }
-
-        public int? ToothExtracted { get; set; }
-        public bool? IsToothExtract { get; set; }
 
         public DateTime RegisterDate { get; set; } = DateTime.Now;
     }

@@ -43,6 +43,7 @@ public class HomeController : Controller
     {
         return View();
     }
+
     [HttpGet("/smile-makeovers")]
     public async Task<IActionResult> SmileMakeovers()
     {
@@ -52,7 +53,6 @@ public class HomeController : Controller
     [HttpGet("/invoice")]
     public async Task<IActionResult> Receipt([FromQuery] double paid)
     {
-        
         var user = await _userManager.GetUserAsync(User);
         var firstName = user.UserName;
         var change = paid - 600;
@@ -70,9 +70,21 @@ public class HomeController : Controller
     {
         return View();
     }
-    
+
     [HttpGet("/patients")]
     public async Task<IActionResult> PatientList()
+    {
+        return View();
+    }
+
+    [HttpGet("/dentists")]
+    public async Task<IActionResult> DentistList()
+    {
+        return View();
+    }
+
+    [HttpGet("/messages")]
+    public async Task<IActionResult> AdminMessaging()
     {
         return View();
     }
@@ -116,13 +128,25 @@ public class HomeController : Controller
     [HttpGet("/patientdashboard")]
     public async Task<IActionResult> Patient()
     {
-        var currentUser = await _userManager.GetUserAsync(User);
+        try
+        {
+            var currentUser = await _userManager.GetUserAsync(User);
 
-        var currentPatient =
-            await _dbContext.Patients.FirstOrDefaultAsync(x => x.Id == currentUser.Id);
+            var currentPatient =
+                await _dbContext.Patients.FirstOrDefaultAsync(x => x.Id == currentUser.Id);
 
-        ViewData["Patient"] = currentPatient;
-        return View();
+            ViewData["Patient"] = currentPatient;
+            return View();
+        }
+        catch
+        {
+            foreach (var cookie in Request.Cookies.Keys)
+            {
+                Response.Cookies.Delete(cookie);
+            }
+
+            return Content("Refresh the page...");
+        }
     }
 
     public async Task<bool> IsUserValid(ClaimsPrincipal user)

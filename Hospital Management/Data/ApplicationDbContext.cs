@@ -12,7 +12,7 @@ public class ApplicationDbContext : IdentityDbContext
 
     public DbSet<Chat> Chats { get; set; }
 
-    public DbSet<MedicinePayment> MedicinePayments { get; set; }
+    public DbSet<AppointmentPayment> MedicinePayments { get; set; }
 
     public DbSet<AppointmentModel> Appointments { get; set; }
 

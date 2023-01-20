@@ -19,7 +19,7 @@
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
         <div class="container-fluid">
             <img src="/images/Picture1.svg" style="max-height: 40px" class="me-2"/>
             <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"></a>
@@ -94,24 +94,28 @@
 
 @if (User.IsInRole("Admin"))
 {
-    <div class="container-fluid row mb-2">
-        <div class="col-4 col-md-2 container-fluid">
+    <div class="container-fluid row mb-2 p-0">
+        <div class="col-4 col-md-2 container-fluid bg-dark text-white">
+            <a href="/" class="d-flex align-items-center m-4 me-md-auto text-white text-decoration-none">
+                <i class="bi bi-pencil-square me-2"></i>
+                <span class="fs-4">Administrator</span>
+            </a>
 
-            <ul class="nav nav-pills flex-column mb-auto">
-                <li class="nav-item">
-                    <a href="/" class="nav-link"><i class="bi bi-house"></i> Dashboard</a>
+            <ul class="nav nav-pills flex-column mb-auto navbar-dark">
+                <li class="nav-item text-white m-3">
+                    <a href="/" class="nav-link text-white"><i class="bi bi-house me-2"></i> Dashboard</a>
                 </li>
-                <li class="nav-item">
-                    <a href="/register" class="nav-link"><i class="bi bi-person-fill-add"></i> Register Dentist</a>
+                <li class="nav-item text-white m-3">
+                    <a href="/register" class="nav-link text-white"><i class="bi bi-person-fill-add" me-2></i> Register Dentist</a>
                 </li>
-                <li class="nav-item">
-                    <a href="/patients" class="nav-link"><i class="bi bi-people"></i> Patients</a>
+                <li class="nav-item text-white m-3">
+                    <a href="/patients" class="nav-link text-white"><i class="bi bi-people me-2"></i> Patients</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link"><i class="bi bi-file-earmark-image-fill"></i> Doctor Images</a>
+                <li class="nav-item text-white m-3">
+                    <a href="/dentists" class="nav-link text-white"><i class="bi bi-file-earmark-image-fill me-2"></i> Dentist Images</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link"><i class="bi bi-chat-dots"></i> Messages</a>
+                <li class="nav-item text-white m-3">
+                    <a href="/messages" class="nav-link text-white"><i class="bi bi-chat-dots me-2"></i> Messages</a>
                 </li>
             </ul>
         </div>

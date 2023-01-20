@@ -1,6 +1,6 @@
 ﻿namespace Hospital_Management.Models;
 
-public class MedicinePayment
+public class AppointmentPayment
 {
     public int Id { get; set; }
     public Patient? Buyer { get; set; }

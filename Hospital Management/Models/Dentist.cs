@@ -19,6 +19,8 @@ namespace Hospital_Management.Models
 
         public string? LicenseNumber { get; set; }
 
+        public string? DentistImage { get; set; }
+
         public List<AppointmentModel>? Appointments { get; set; }
     }
 }

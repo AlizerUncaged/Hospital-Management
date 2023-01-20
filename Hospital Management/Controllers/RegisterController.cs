@@ -12,26 +12,41 @@ public class RegisterController : Controller
     private readonly UserManager<IdentityUser> _userManager;
     private readonly ApplicationDbContext _dbContext;
     private readonly SignInManager<IdentityUser> _signInManager;
+    private readonly IWebHostEnvironment _environment;
 
     public RegisterController(RoleManager<IdentityRole> roleManager, UserManager<IdentityUser> userManager,
-        ApplicationDbContext dbContext, SignInManager<IdentityUser> signInManager)
+        ApplicationDbContext dbContext, SignInManager<IdentityUser> signInManager, IWebHostEnvironment environment)
     {
         _roleManager = roleManager;
         _userManager = userManager;
         _dbContext = dbContext;
         _signInManager = signInManager;
+        _environment = environment;
     }
 
     [HttpPost("/registerDoctor")]
     public async Task<IActionResult> Register([FromForm] string name, [FromForm] string address,
         [FromForm] string birthdate, [FromForm] string gender,
-        [FromForm] string cellphoneNumber, [FromForm] string licenseNumber, [FromForm] string password)
+        [FromForm] string cellphoneNumber, [FromForm] string licenseNumber, [FromForm] string password,
+        [FromForm] IFormFile image)
     {
         var dentist = new Dentist()
         {
             Name = name, Address = address, Gender = gender, Birthdate = birthdate, CellphoneNumber = cellphoneNumber,
-            LicenseNumber = licenseNumber, UserName = name
+            LicenseNumber = licenseNumber, UserName = name, DentistImage = $"/images/doctors/{image.FileName}"
         };
+
+        var path = Path.Combine(_environment.WebRootPath, "images", "doctors");
+        if (!Directory.Exists(path))
+            Directory.CreateDirectory(path);
+
+        path = Path.Combine(path, image.FileName);
+
+        using (FileStream stream = new FileStream(path, FileMode.Create))
+        {
+            await image.CopyToAsync(stream);
+            stream.Close();
+        }
 
         var newEntity = await _dbContext.Dentists.AddAsync(dentist);
 
@@ -76,16 +91,20 @@ public class RegisterController : Controller
     }
 
     [HttpPost("/newAppointment")]
-    public async Task<IActionResult> RegisterPatient([FromForm] string description, [FromForm] double paid)
+    public async Task<IActionResult> RegisterPatient([FromForm] string description, [FromForm] double paid,
+        [FromForm] string time, [FromForm] string date, [FromForm] string[] concerns)
     {
         var currentUser = await _userManager.GetUserAsync(User);
 
-        var currentDoctor =
+        var currentPatient =
             await _dbContext.Patients.FirstOrDefaultAsync(x => x.Id == currentUser.Id);
 
         var dentist = new AppointmentModel()
         {
-            Note = description, Patient = currentDoctor
+            Note = description, Patient = currentPatient,
+            Services = string.Join(",", concerns),
+            Time = time,
+            Date = date, TotalPrice = paid
         };
 
         var newEntity = await _dbContext.Appointments.AddAsync(dentist);

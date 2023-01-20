@@ -20,6 +20,8 @@ public class RoleCreation
 
     public async Task CreateRolesAsync()
     {
+        await _dbContext.Database.EnsureCreatedAsync();
+        
         //initializing custom roles 
         string[] roleNames = { "Admin", "Dentist", "Patient" };
         IdentityResult roleResult;
