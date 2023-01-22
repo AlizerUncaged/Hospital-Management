@@ -1,7 +1,9 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
-
+@{
+    ViewData["Title"] = "Support Chat";
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +19,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
 
 </head>
-<body>
+<body style="overflow-x: hidden">
 <header>
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
         <div class="container-fluid">
@@ -86,15 +88,15 @@
         </div>
     </nav>
 </header>
-<div class="position-fixed fixed-bottom end-0 d-flex flex-row-reverse">
-    <button class="rounded-5 btn-success btn m-4">
+<div class="position-fixed fixed-bottom end-0 d-flex flex-row-reverse" style="pointer-events: none">
+    <button class="rounded-5 btn-success btn m-4" style="pointer-events: all">
         <i class="bi bi-chat-fill"></i> Chat
     </button>
 </div>
 
 @if (User.IsInRole("Admin"))
 {
-    <div class="container-fluid row mb-2 p-0">
+    <div class="container-fluid row p-0">
         <div class="col-4 col-md-2 container-fluid bg-dark text-white">
             <a href="/" class="d-flex align-items-center m-4 me-md-auto text-white text-decoration-none">
                 <i class="bi bi-pencil-square me-2"></i>
@@ -119,7 +121,42 @@
                 </li>
             </ul>
         </div>
-        <div class="col-8 col-md-10">
+        <div class="col-8 col-md-10 p-0">
+            @RenderBody()
+        </div>
+    </div>
+}
+else if (User.IsInRole("Dentist"))
+{
+    <div class="container-fluid row p-0">
+        <div class="col-5 col-md-3 container-fluid bg-dark text-white">
+            <a href="/" class="d-flex align-items-center m-4 me-md-auto text-white text-decoration-none">
+                <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M14.84,16.26C17.86,16.83 20,18.29 20,20V22H4V20C4,18.29 6.14,16.83 9.16,16.26L12,21L14.84,16.26M8,8H16V10A4,4 0 0,1 12,14A4,4 0 0,1 8,10V8M8,7L8.41,2.9C8.46,2.39 8.89,2 9.41,2H14.6C15.11,2 15.54,2.39 15.59,2.9L16,7H8M12,3H11V4H10V5H11V6H12V5H13V4H12V3Z"/>
+                </svg>
+
+                <span class="fs-4">Dentist</span>
+            </a>
+
+            <ul class="nav nav-pills flex-column mb-auto navbar-dark">
+                <li class="nav-item text-white m-3">
+                    <a href="/doctor-appointment" class="nav-link text-white"><i class="bi bi-house me-2"></i> Appointments</a>
+                </li>
+                <li class="nav-item text-white m-3">
+                    <a href="/doctor-patients" class="nav-link text-white"><i class="bi bi-person-fill-add me-2"></i> Patients</a>
+                </li>
+                <li class="nav-item text-white m-3">
+                    <a href="/invoice" class="nav-link text-white"><i class="bi bi-people me-2"></i> Invoice</a>
+                </li>
+                <li class="nav-item text-white m-3">
+                    <a href="/appointment-details" class="nav-link text-white"><i class="bi bi-file-earmark-image-fill me-2"></i> Appointment Details</a>
+                </li>
+                <li class="nav-item text-white m-3">
+                    <a href="/notifications" class="nav-link text-white"><i class="bi bi-chat-dots me-2"></i> Notification</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-7 col-md-9 p-0">
             @RenderBody()
         </div>
     </div>
@@ -131,13 +168,13 @@ else
             @RenderBody()
         </main>
     </div>
-}
 
-<footer class="border-top footer text-muted">
-    <div class="container">
-        &copy; @DateTime.Now.Year - Dentist World Manila
-    </div>
-</footer>
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; @DateTime.Now.Year - Dentist World Manila
+        </div>
+    </footer>
+}
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>

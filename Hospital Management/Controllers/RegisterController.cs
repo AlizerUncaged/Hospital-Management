@@ -92,7 +92,7 @@ public class RegisterController : Controller
 
     [HttpPost("/newAppointment")]
     public async Task<IActionResult> RegisterPatient([FromForm] string description, [FromForm] double paid,
-        [FromForm] string time, [FromForm] string date, [FromForm] string[] concerns)
+        [FromForm] DateTime? date, [FromForm] string[] concerns)
     {
         var currentUser = await _userManager.GetUserAsync(User);
 
@@ -103,7 +103,6 @@ public class RegisterController : Controller
         {
             Note = description, Patient = currentPatient,
             Services = string.Join(",", concerns),
-            Time = time,
             Date = date, TotalPrice = paid
         };
 

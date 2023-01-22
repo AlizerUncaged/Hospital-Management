@@ -8,35 +8,12 @@
             <h2 class="mt-2">Create a new appointment.</h2>
             <p>
                 Due to COVID-19 pandemic we are strictly by appointment only until further notice. We can accommodate 4
-                to 5 patients only per branch per day. Please answer the questionnaire. Print, sign and bring it on the
-                date of your appointment. This will serve also as proof of appointment. We will confirm your appointment
-                via email or call 2 to 3 days before your appointment date. Please take note of the following
+                to 5 patients only per branch per day. Please answer the questionnaire.
             </p>
-            <ul>
-                <li>
-                    Wearing face mask is a requirement
-                </li>
-                <li>
-                    Companion is not allowed inside the clinic and treatment room except for minor
-                </li>
-                <li>
-                    We encourage you to make the clinic as your first destination for the day
-                </li>
-                <li>
-                    Wearing shoes with lace is not recommended when you come to the clinic
-                </li>
-                <li>
-                    Patient is encouraging to bring one bag only and wear minimal jewelry
-                </li>
-            </ul>
             <hr/>
             <div class="form-floating mb-3">
-                <input id="birthdate-id" type="date" name="date" class="form-control" aria-required="true"/>
-                <label for="birthdate-id">Date of Visit</label>
-            </div>
-            <div class="form-floating mb-3">
-                <input id="time-id" type="time" name="time" class="form-control" aria-required="true"/>
-                <label for="time-id">Time of Visit</label>
+                <input id="birthdate-id" type="datetime-local" name="date" class="form-control" aria-required="true"/>
+                <label for="birthdate-id">Date and Time of Visit</label>
             </div>
             <div class="form-floating mb-3">
                 <textarea style="height: 150px;" id="desc" rows="5" type="text" name="description" class="form-control" autocomplete="username" aria-required="true" placeholder=""></textarea>
@@ -61,7 +38,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel"><i class="bi bi-credit-card-2-back-fill"></i> Pay</h5>
+                            <h5 class="modal-title" id="exampleModalLabel"><i class="bi bi-send-fill"></i> Submit</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">

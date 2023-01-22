@@ -1,28 +1,30 @@
-﻿<div class="container">
-    <div class="row">&nbsp;</div>
-    <div class="row">
-        <div class="col-2">User</div>
-        <div class="col-4"><input type="text" id="userInput" /></div>
-    </div>
-    <div class="row">
-        <div class="col-2">Message</div>
-        <div class="col-4"><input type="text" id="messageInput" /></div>
-    </div>
-    <div class="row">&nbsp;</div>
-    <div class="row">
-        <div class="col-6">
-            <input type="button" id="sendButton" value="Send Message" />
+﻿<div class="container-fluid row">
+    <div class="row m-0 p-0" style="min-height: 400px">
+        <div class="container-fluid p-2 border-1">
+            <div class="d-flex flex-row">
+                <i class="bi bi-chat-dots-fill me-2"></i>
+                <p class="h-4">
+                    <strong>Support Messages</strong>
+                </p>
+            </div>
         </div>
+
+        <div class="row">
+            <div class="container-fluid d-flex align-items-end flex-row">
+                <ul id="messagesList" class="list-group"></ul>
+            </div>
+        </div>
+
     </div>
-</div>
-<div class="row">
-    <div class="col-12">
-        <hr />
-    </div>
-</div>
-<div class="row">
-    <div class="col-6">
-        <ul id="messagesList"></ul>
+    <div class="container-fluid">
+
+        <div class="input-group mb-3">
+
+            <input type="text" id="messageInput" class="form-control"/>
+            <button type="button" class="btn btn-primary" id="sendButton">
+                <i class="bi bi-send-fill"></i> Send
+            </button>
+        </div>
     </div>
 </div>
 
@@ -41,12 +43,16 @@
         var encodedMsg = user + " says " + msg;
         
         var li = document.createElement("li");
+        li.classList.add("list-group-item");
+        li.classList.add("rounded-4");
+        li.classList.add("m-2");
+        li.classList.add("border-1");
         li.textContent = encodedMsg;
         document.getElementById("messagesList").appendChild(li);
     });
     
     document.getElementById("sendButton").addEventListener("click", function (event) {
-        var user = document.getElementById("userInput").value;
+        var user = '@User.Identity.Name';
         var message = document.getElementById("messageInput").value;
         connection.invoke("SendMessage", user, message).catch(function (err) {
             return console.error(err.toString());

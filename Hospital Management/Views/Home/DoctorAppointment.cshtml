@@ -1,0 +1,80 @@
+﻿@using Hospital_Management.Data
+@using Microsoft.EntityFrameworkCore
+@using System.Globalization
+@using System.Security.Claims
+@inject ApplicationDbContext DbContext
+
+@{
+    ViewData["Title"] = "Appointments";
+
+    var search = string.Empty;
+    if (Context.Request.Query.TryGetValue("find", out var find))
+    {
+        search = find.ToString();
+    }
+
+    List<AppointmentModel> appointmentModels = new();
+
+    var appointments = DbContext.Appointments;
+    if (search == "review")
+        appointments.Where(x => !x.IsCancelled && x.Dentist == null);
+    if (search == "accepted")
+        appointments.Where(x => x.Dentist.Id == User.FindFirstValue(ClaimTypes.NameIdentifier));
+    if (search == "declined")
+    {
+        appointmentModels = await DbContext
+            .Dentists
+            .Include(x => x.DeclinedAppointments)
+            .ThenInclude(x => x.Patient)
+            .Where(x => x.Id == User.FindFirstValue(ClaimTypes.NameIdentifier))
+            .SelectMany(x => x.DeclinedAppointments).ToListAsync();
+    }
+    else
+        appointmentModels = await appointments.ToListAsync();
+
+    // var patients = await DbContext.Patients.ToListAsync();
+    // patients = patients.Where(x => x.UserName.ToLower().Contains(search.ToLower())).ToList();
+}
+
+<div class="container-fluid mt-2">
+    <form method="get">
+        <div class="mb-3">
+            <div class="input-group mb-3">
+                <select id="cars" name="find" class="form-select">
+                    <option value="review">In Review</option>
+                    <option value="accepted">Accepted (By You)</option>
+                    <option value="declined">Declined</option>
+                </select>
+                <button type="submit" class="btn btn-primary">Refresh</button>
+            </div>
+        </div>
+    </form>
+    <div class="container row">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Patient Name</th>
+                <th scope="col">Date Created</th>
+                <th scope="col">Appointment Date</th>
+                <th scope="col">Services</th>
+                <th scope="col">Status</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var appointment in appointmentModels)
+            {
+               <tr>
+                   <th scope="row">@appointment.AppointmentID</th>
+                   <td>@appointment.Patient.FullName</td>
+                   <td>@appointment.DateCreated</td>
+                   <td>@DateTime.Parse(appointment.Date).ToString("MMMM d, yyyy", new CultureInfo("en-US"))</td>
+                   <td>@appointment.Services</td>
+                   <td>Unkown</td>
+               </tr>
+           }
+            </tbody>
+        </table>
+    </div>
+</div>

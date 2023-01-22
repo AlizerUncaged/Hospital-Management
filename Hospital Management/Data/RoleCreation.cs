@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Hospital_Management.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Hospital_Management.Data;
 
@@ -21,7 +22,8 @@ public class RoleCreation
     public async Task CreateRolesAsync()
     {
         await _dbContext.Database.EnsureCreatedAsync();
-        
+
+
         //initializing custom roles 
         string[] roleNames = { "Admin", "Dentist", "Patient" };
         IdentityResult roleResult;
@@ -34,6 +36,42 @@ public class RoleCreation
                 //create the roles and seed them to the database: Question 1
                 roleResult = await _roleManager.CreateAsync(new IdentityRole(roleName));
             }
+        }
+
+        // Register sample patient.
+        {
+            var patient = new Patient()
+            {
+                Name = "patient", Address = "patient", Gender = "patient", Birthdate = DateTime.Now.ToString(),
+                CellphoneNumber = "123",
+                Guardian = "patient", UserName = "patient", Email = "patient@patient.com"
+            };
+
+            var newEntity = await _dbContext.Patients.AddAsync(patient);
+
+            var registerResult = await _userManager.CreateAsync(patient, "pass123");
+
+            await _userManager.AddToRoleAsync(newEntity.Entity, "Patient");
+
+            await _dbContext.SaveChangesAsync();
+        }
+
+        // Register sample doctor.
+        {
+            var dentist = new Dentist()
+            {
+                Name = "dentist", Address = "dentist", Gender = "dentist", Birthdate = DateTime.Now.ToString(),
+                CellphoneNumber = "123", Email = "dentist@dentist.com",
+                LicenseNumber = "dentist", UserName = "dentist", DentistImage = $"/images/doctors/image.png"
+            };
+
+            var newEntity = await _dbContext.Dentists.AddAsync(dentist);
+
+            var registerResult = await _userManager.CreateAsync(dentist, "pass123");
+
+            await _userManager.AddToRoleAsync(newEntity.Entity, "Dentist");
+
+            await _dbContext.SaveChangesAsync();
         }
 
         // Create admin if not exist yet.

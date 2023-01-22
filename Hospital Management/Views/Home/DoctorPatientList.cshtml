@@ -1,6 +1,7 @@
 ﻿@using Hospital_Management.Data
 @using Microsoft.EntityFrameworkCore
 @using System.Globalization
+@using Itenso.TimePeriod
 @using Microsoft.AspNetCore.Mvc.TagHelpers
 
 @inject ApplicationDbContext DbContext
@@ -39,28 +40,36 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
-                <th scope="col">Address</th>
-                <th scope="col">Birthdate</th>
-                <th scope="col">Gender</th>
-                <th scope="col">Cellphone #</th>
+                <th scope="col">Image</th>
                 <th scope="col">Email</th>
-                <th scope="col">Guardian</th>
-                <th scope="col">Appointments</th>
+                <th scope="col">Age</th>
+                <th scope="col">Services</th>
+                <th scope="col">Actions</th>
             </tr>
             </thead>
             <tbody>
             @foreach (var patient in patients)
             {
+                var services = patient.Appointments.SelectMany(x => x.Services.Split(",")).Distinct();
+                var takenServices = string.Join(", ", services);
+                takenServices = string.IsNullOrWhiteSpace(takenServices) ? "<None>" : takenServices;
                 <tr>
                     <th scope="row">@(patients.IndexOf(patient) + 1)</th>
                     <td>@patient.Name</td>
-                    <td>@patient.Address</td>
-                    <td>@DateTime.Parse(patient.Birthdate).ToString("MMMM d, yyyy", new CultureInfo("en-US"))</td>
-                    <td>@patient.Gender</td>
-                    <td>@patient.CellphoneNumber</td>
+                    <td>
+                        <img style="max-height: 50px" class="img-fluid" src="@patient.Image"/>
+                    </td>
                     <td>@patient.Email</td>
-                    <td>@patient.Guardian</td>
-                    <td>@patient.Appointments.Count</td>
+                    <td>@Math.Abs(DateTime.Now.Year - DateTime.Parse(patient.Birthdate).Year)</td>
+                    <td>@takenServices</td>
+                    <td class="container d-flex flex-column">
+                        <a class="btn-primary btn rounded-3 m-1" href="/patients/edit/@patient.Id">
+                            <i class="bi bi-pencil-square"></i> Edit
+                        </a>
+                        <a class="btn-success btn rounded-3 m-1" href="/patients/edit/@patient.Id">
+                            <i class="bi bi-wallet2"></i> Invoice
+                        </a>
+                    </td>
                 </tr>
             }
             </tbody>

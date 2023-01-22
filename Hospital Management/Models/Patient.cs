@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Hospital_Management.Models
 {
@@ -10,22 +11,32 @@ namespace Hospital_Management.Models
 
         public virtual List<AppointmentModel> Appointments { get; set; } = new List<AppointmentModel>();
 
-        public string Name { get; set; }
+        [FromForm()] public string Name { get; set; }
 
         public string FullName => UserName;
 
-        public string Address { get; set; }
+        [FromForm()] public string Address { get; set; }
 
+        // [DataType(DataType.Date)]
+        // [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString =  "{0:yyyy-MM-ddTHH:mm}")]
+        [FromForm()]
         public string Birthdate { get; set; }
 
-        public string Gender { get; set; }
+        [FromForm()] public string Gender { get; set; }
 
-        public string Guardian { get; set; }
+        [FromForm()] public string Guardian { get; set; }
 
-        public string CellphoneNumber { get; set; }
-        
-        public string? Tag { get; set; }
-        
+        [Display(Name = "Cellphone Number")] public string CellphoneNumber { get; set; }
+
+        [FromForm()] public string? Tag { get; set; }
+
+        [Display(Name = "Pulse Rate")] public string? PulseRate { get; set; }
+
+        [Display(Name = "Blood Pressure")] public string? BloodPressure { get; set; }
+        public string? Allergy { get; set; }
+        public string? Image { get; set; }
+
+        [Display(Name = "Prescription Image")] public string? PrescriptionImage { get; set; }
 
         public List<Chat> Chats { get; set; } = new();
 

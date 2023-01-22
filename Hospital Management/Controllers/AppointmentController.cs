@@ -26,7 +26,7 @@ public class AppointmentController : Controller
     public async Task<IActionResult> DeleteAppointment(int appointmentId)
     {
         var appointment = await _dbContext.Appointments.AsNoTracking()
-            .FirstOrDefaultAsync(x => x.AppointmentID == appointmentId);
+            .FirstOrDefaultAsync(x => x.AppointmentId == appointmentId);
 
         _dbContext.Appointments.Remove(appointment);
 
@@ -39,7 +39,7 @@ public class AppointmentController : Controller
     public async Task<IActionResult> CancelAppointment(int appointmentId, string reason)
     {
         var appointment = await _dbContext.Appointments.AsNoTracking()
-            .FirstOrDefaultAsync(x => x.AppointmentID == appointmentId);
+            .FirstOrDefaultAsync(x => x.AppointmentId == appointmentId);
 
         appointment.IsCancelled = true;
 
@@ -54,7 +54,7 @@ public class AppointmentController : Controller
     public async Task<IActionResult> AcceptAppointment(int appointmentId)
     {
         var appointment = await _dbContext.Appointments.AsNoTracking()
-            .FirstOrDefaultAsync(x => x.AppointmentID == appointmentId);
+            .FirstOrDefaultAsync(x => x.AppointmentId == appointmentId);
 
         appointment.IsCancelled = false;
 

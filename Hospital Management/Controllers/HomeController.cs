@@ -15,14 +15,16 @@ public class HomeController : Controller
     private readonly RoleCreation _roleCreation;
     private readonly ApplicationDbContext _dbContext;
     private readonly UserManager<IdentityUser> _userManager;
+    private readonly IWebHostEnvironment _environment;
 
     public HomeController(ILogger<HomeController> logger, RoleCreation roleCreation, ApplicationDbContext dbContext,
-        UserManager<IdentityUser> userManager)
+        UserManager<IdentityUser> userManager, IWebHostEnvironment environment)
     {
         _logger = logger;
         _roleCreation = roleCreation;
         _dbContext = dbContext;
         _userManager = userManager;
+        _environment = environment;
     }
 
 
@@ -37,6 +39,87 @@ public class HomeController : Controller
         return Content("Cookies Cleared");
     }
 
+
+    [HttpGet("/doctor-appointment")]
+    public async Task<IActionResult> DoctorAppointment()
+    {
+        return View();
+    }
+
+    [HttpGet("/patients/edit/{id}")]
+    public async Task<IActionResult> PatientEditor(string id)
+    {
+        ViewData["Patient"] =
+            await _dbContext.Patients.Include(x => x.Appointments).FirstOrDefaultAsync(x => x.Id == id);
+
+        return View(ViewData["Patient"]);
+    }
+
+    [HttpPost("/patients/edit")]
+    public async Task<IActionResult> PatientEditor(Patient patient, [FromForm] IFormFile? image,
+        [FromForm] IFormFile? prescriptionImage)
+    {
+        var samePatient = await _dbContext.Patients.FirstOrDefaultAsync(x => x.Id == patient.Id);
+        samePatient.Name = patient.Name;
+        samePatient.Address = patient.Address;
+        samePatient.Birthdate = patient.Birthdate;
+        samePatient.CellphoneNumber = patient.CellphoneNumber;
+        samePatient.Email = patient.Email;
+        samePatient.Guardian = patient.Guardian;
+        samePatient.PulseRate = patient.PulseRate;
+        samePatient.BloodPressure = patient.BloodPressure;
+        samePatient.Allergy = patient.Allergy;
+
+        if (image is { })
+        {
+            samePatient.Image = $"/images/clients/{image.FileName}";
+
+            {
+                var path = Path.Combine(_environment.WebRootPath, "images", "clients");
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                path = Path.Combine(path, image.FileName);
+
+                using (FileStream stream = new FileStream(path, FileMode.Create))
+                {
+                    await image.CopyToAsync(stream);
+                    stream.Close();
+                }
+            }
+        }
+
+        if (prescriptionImage is { })
+        {
+            samePatient.PrescriptionImage = $"/images/clients/{prescriptionImage.FileName}";
+
+            {
+                var path = Path.Combine(_environment.WebRootPath, "images", "clients");
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                path = Path.Combine(path, prescriptionImage.FileName);
+
+                using (FileStream stream = new FileStream(path, FileMode.Create))
+                {
+                    await prescriptionImage.CopyToAsync(stream);
+                    stream.Close();
+                }
+            }
+        }
+
+
+        _dbContext.Patients.Update(samePatient);
+        await _dbContext.SaveChangesAsync();
+
+        return Redirect("/doctor-patients");
+    }
+
+    [HttpGet("/doctor-patients")]
+    public async Task<IActionResult> DoctorPatientList()
+    {
+        return View();
+    }
 
     [HttpGet("/register")]
     public async Task<IActionResult> RegisterDoctor()
