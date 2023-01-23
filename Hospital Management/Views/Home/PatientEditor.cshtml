@@ -9,6 +9,12 @@
     {
         @@class = "form-control"
     };
+
+    var textBoxClassesReadonly = new Dictionary<string, string>()
+    {
+        { "class", "form-control" },
+        { "readonly", "readonly" },
+    };
 }
 @if (currentPatient is {})
 {
@@ -17,7 +23,7 @@
         <div class="container-fluid row">
             <div class="col-6">
                 <div class="form-floating mb-3">
-                    @Html.TextBoxFor(m => m.Id, htmlAttributes: textBoxClasses)
+                    @Html.TextBoxFor(m => m.Id, htmlAttributes: textBoxClassesReadonly)
                     @Html.LabelFor(x => x.Id)
                 </div>
                 <div class="form-floating mb-3">

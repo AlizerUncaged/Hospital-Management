@@ -2,6 +2,7 @@
 @using Microsoft.EntityFrameworkCore
 @using System.Globalization
 @using System.Security.Claims
+
 @inject ApplicationDbContext DbContext
 
 @{
@@ -66,10 +67,10 @@
             @foreach (var appointment in appointmentModels)
             {
                <tr>
-                   <th scope="row">@appointment.AppointmentID</th>
+                   <th scope="row">@appointment.AppointmentId</th>
                    <td>@appointment.Patient.FullName</td>
                    <td>@appointment.DateCreated</td>
-                   <td>@DateTime.Parse(appointment.Date).ToString("MMMM d, yyyy", new CultureInfo("en-US"))</td>
+                   <td>@appointment.Date?.ToString("MMMM d, yyyy", new CultureInfo("en-US"))</td>
                    <td>@appointment.Services</td>
                    <td>Unkown</td>
                </tr>
