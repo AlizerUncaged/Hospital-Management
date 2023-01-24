@@ -46,6 +46,31 @@ public class HomeController : Controller
         return View();
     }
 
+    [HttpGet("/doctor-invoice")]
+    public async Task<IActionResult> Invoicing()
+    {
+        var currentUser = await _userManager.GetUserAsync(User);
+
+        var currentDoctor =
+            await _dbContext.Dentists.FirstOrDefaultAsync(x => x.Id == currentUser.Id);
+
+        var currentAppointment =
+            await _dbContext.Appointments.Include(x => x.Dentist)
+                .Include(x => x.Patient)
+                .Where(x => currentUser.Id == x.Dentist.Id).ToListAsync();
+
+        var currentActiveAppointment = currentAppointment.FirstOrDefault(x =>
+        {
+            var difference = DateTime.Now - x.Date;
+            if (difference?.TotalMinutes <= 30 && difference?.TotalMinutes >= -30)
+                return true;
+
+            return false;
+        });
+
+        return View(currentActiveAppointment);
+    }
+
     [HttpGet("/patients/edit/{id}")]
     public async Task<IActionResult> PatientEditor(string id)
     {

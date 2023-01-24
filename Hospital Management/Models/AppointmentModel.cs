@@ -4,11 +4,26 @@ namespace Hospital_Management.Models
 {
     public class AppointmentModel
     {
-        [Key] public int? AppointmentId { get; set; }
+        [Key]
+        [Display(Name = "Appointment ID")]
+        public int? AppointmentId { get; set; }
 
         public DateTime? DateCreated { get; set; } = DateTime.Now;
 
-        [DataType(DataType.Date)] public DateTime? Date { get; set; }
+        [DataType(DataType.Date)] 
+        [Display(Name = "Appointment Date")]
+        public DateTime? Date { get; set; }
+
+        [Display(Name = "Expires At")]
+        public DateTime? ExpiresAt
+        {
+            get
+            {
+                var toAdd = Date;
+                var addMinutes = toAdd?.AddMinutes(30);
+                return addMinutes;
+            }
+        }
 
         public Dentist? Dentist { get; set; } = null;
 
@@ -24,7 +39,8 @@ namespace Hospital_Management.Models
         public string Services { get; set; } = string.Empty;
 
         public string? Note { get; set; }
-
+        
+        public bool IsDone { get; set; } = false;
         public bool IsCancelled { get; set; } = false;
     }
 }

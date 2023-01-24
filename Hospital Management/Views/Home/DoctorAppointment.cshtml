@@ -16,7 +16,7 @@
 
     List<AppointmentModel> appointmentModels = new();
 
-    var appointments = DbContext.Appointments;
+    var appointments = DbContext.Appointments.Include(x=>x.Patient);
     if (search == "review")
         appointments.Where(x => !x.IsCancelled && x.Dentist == null);
     if (search == "accepted")

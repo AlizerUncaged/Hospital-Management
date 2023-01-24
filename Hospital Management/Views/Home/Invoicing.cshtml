@@ -1,79 +1,113 @@
-﻿@model Patient
+﻿@inject ApplicationDbContext DbContext
+
+@using Hospital_Management.Data
+@using Hospital_Management.Utilities
+@model AppointmentModel?
+
 @{
-    Patient? currentPatient = null;
-    if (ViewData.TryGetValue("Patient", out var j) && j is Patient p)
+    var textBoxClasses = new Dictionary<string, object>()
     {
-        currentPatient = p;
-    }
-    var textBoxClasses = new
-    {
-        @@class = "form-control"
+        { "class", "form-control" },
+        { "readonly", "readonly" },
     };
 }
-@if (currentPatient is {})
+@if (Model is {})
 {
     <form method="post" class="container-fluid m-4" action="/patients/edit" enctype="multipart/form-data">
-        <h4>Edit Patient</h4>
+        <h4>Invoice Appointment</h4>
         <div class="container-fluid row">
             <div class="col-6">
                 <div class="form-floating mb-3">
-                    @Html.TextBoxFor(m => m.Id, htmlAttributes: textBoxClasses)
-                    @Html.LabelFor(x => x.Id)
+                    @Html.TextBoxFor(m => m.Patient.Id, htmlAttributes: textBoxClasses)
+                    @Html.LabelFor(x => x.Patient.Id)
                 </div>
                 <div class="form-floating mb-3">
-                    @Html.TextBoxFor(m => m.Name, htmlAttributes: textBoxClasses)
-                    @Html.LabelFor(x => x.Name)
+                    @Html.TextBoxFor(m => m.Patient.Name, htmlAttributes: textBoxClasses)
+                    @Html.LabelFor(x => x.Patient.Name)
                 </div>
                 <div class="form-floating mb-3">
-                    @Html.TextBoxFor(m => m.Address, htmlAttributes: textBoxClasses)
-                    @Html.LabelFor(x => x.Address)
+                    @Html.TextBoxFor(m => m.Patient.Address, htmlAttributes: textBoxClasses)
+                    @Html.LabelFor(x => x.Patient.Address)
                 </div>
                 <div class="form-floating mb-3">
-                    @Html.TextBoxFor(m => m.Birthdate, htmlAttributes: textBoxClasses)
-                    @Html.LabelFor(x => x.Birthdate)
-                </div>
-                <div class="form-floating mb-3">
-                    @Html.TextBoxFor(m => m.CellphoneNumber, htmlAttributes: textBoxClasses)
-                    @Html.LabelFor(x => x.CellphoneNumber)
-                </div>
-                <div class="form-floating mb-3">
-                    @Html.TextBoxFor(m => m.Email, htmlAttributes: textBoxClasses)
-                    @Html.LabelFor(x => x.Email)
-                </div>
-                <div class="form-floating mb-3">
-                    @Html.TextBoxFor(m => m.Guardian, htmlAttributes: textBoxClasses)
-                    @Html.LabelFor(x => x.Guardian)
+                    @Html.TextBoxFor(m => m.Patient.CellphoneNumber, htmlAttributes: textBoxClasses)
+                    @Html.LabelFor(x => x.Patient.CellphoneNumber)
                 </div>
             </div>
             <div class="col-6">
                 <div class="form-floating mb-3">
-                    <input name="appointments" class="form-control" readonly="readonly" type="text" value="@string.Join(",", currentPatient.Appointments.SelectMany(x => x.Services.Split(",").Select(xo => xo.Trim())))"/>
-                    @Html.LabelFor(x => x.Appointments)
+                    @Html.TextBoxFor(m => m.ExpiresAt, htmlAttributes: textBoxClasses)
+                    @Html.LabelFor(x => x.ExpiresAt)
                 </div>
                 <div class="form-floating mb-3">
-                    @Html.TextBoxFor(m => m.PulseRate, htmlAttributes: textBoxClasses)
-                    @Html.LabelFor(x => x.PulseRate)
-                </div>
-                <div class="form-floating mb-3">
-                    @Html.TextBoxFor(m => m.BloodPressure, htmlAttributes: textBoxClasses)
-                    @Html.LabelFor(x => x.BloodPressure)
-                </div>
-                <div class="form-floating mb-3">
-                    @Html.TextBoxFor(m => m.Allergy, htmlAttributes: textBoxClasses)
-                    @Html.LabelFor(x => x.Allergy)
-                </div>
-                <div class="mb-3">
-                    <input id="image" type="file" name="image" class="form-control" aria-required="true"/>
-                    <label for="image">Patient's Image</label>
-                </div>
-                <div class="mb-3">
-                    <input id="image" type="file" name="prescriptionImage" class="form-control" aria-required="true"/>
-                    <label for="precriptionImage">Prescription Image</label>
+                    @Html.TextBoxFor(m => m.Date, htmlAttributes: textBoxClasses)
+                    @Html.LabelFor(x => x.Date)
                 </div>
             </div>
         </div>
+        <div class="container row">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Service</th>
+                    <th scope="col">Amount</th>
+                </tr>
+                </thead>
+                <tbody>
+                @{
+                    var services = Model.Services.Split(",").ToList();
+                    foreach (var appointment in services)
+                    {
+                        var appointmentSplitted = appointment.Split(':');
+                        var name = appointmentSplitted.FirstOrDefault();
+                        var price = 1000d;
+                        if (appointmentSplitted.Length > 1 && double.TryParse(appointmentSplitted.Last(), out var parsedPrice))
+                            price = parsedPrice;
+                        <tr>
+                            <th scope="row">@(1 + services.IndexOf(appointment))</th>
+                            <td>@appointment.FirstCharToUpper()</td>
+                            <td>
+                                <input type="hidden" name="newServices[][name]" value="@name"/>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">₱</span>
+                                    </div>
+                                    <input type="text" class="form-control prices" name="newServices[][price]" value="@price"/>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                    <tr>
+                        <th scope="row"></th>
+                        <td></td>
+                        <td id="total-price">
+                            
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+        <script>
+            var totalPrice = 0;
+            var prices = document.getElementsByClassName("prices");
+            for (var i = 0; i < prices.length; i++) {
+                prices[i].addEventListener("change", calculateTotal);
+                totalPrice += parseFloat(prices[i].value);
+            }
+            document.getElementById("total-price").textContent = "Total Price: " + totalPrice;
+            
+            function calculateTotal() {
+                totalPrice = 0;
+                for (var i = 0; i < prices.length; i++) {
+                    totalPrice += parseFloat(prices[i].value);
+                }
+                document.getElementById("total-price").textContent = "Total Price: " + totalPrice;
+            }
+        </script>
         <button class="btn btn-primary" type="submit">
-            <i class="bi bi-save"></i> Save
+            <i class="bi bi-printer-fill"></i> Print Invoice
         </button>
     </form>
 }

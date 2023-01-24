@@ -1,4 +1,7 @@
-﻿@model Patient
+﻿@using Hospital_Management.Utilities
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using System.Dynamic
+@model Patient
 @{
     Patient? currentPatient = null;
     if (ViewData.TryGetValue("Patient", out var j) && j is Patient p)
@@ -9,8 +12,7 @@
     {
         @@class = "form-control"
     };
-
-    var textBoxClassesReadonly = new Dictionary<string, string>()
+    var textBoxClassesReadonly = new Dictionary<string, object>()
     {
         { "class", "form-control" },
         { "readonly", "readonly" },
