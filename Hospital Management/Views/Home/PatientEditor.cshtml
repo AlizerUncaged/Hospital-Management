@@ -3,6 +3,7 @@
 @using System.Dynamic
 @model Patient
 @{
+    ViewData["Title"] = "Edit Patients";
     Patient? currentPatient = null;
     if (ViewData.TryGetValue("Patient", out var j) && j is Patient p)
     {
@@ -72,10 +73,22 @@
                     @Html.LabelFor(x => x.Allergy)
                 </div>
                 <div class="mb-3">
+                    @{
+                        if (!string.IsNullOrWhiteSpace(Model.Image))
+                        {
+                            <img style="max-width: 175px" src="@Model.Image" class="img-fluid rounded-3 m-2"/>
+                        }
+                    }
                     <input id="image" type="file" name="image" class="form-control" aria-required="true"/>
                     <label for="image">Patient's Image</label>
                 </div>
                 <div class="mb-3">
+                    @{
+                        if (!string.IsNullOrWhiteSpace(Model.PrescriptionImage))
+                        {
+                            <img style="max-width: 175px" src="@Model.PrescriptionImage" class="img-fluid rounded-3 m-2"/>
+                        }
+                    }
                     <input id="image" type="file" name="prescriptionImage" class="form-control" aria-required="true"/>
                     <label for="precriptionImage">Prescription Image</label>
                 </div>

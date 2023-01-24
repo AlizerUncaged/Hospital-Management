@@ -16,7 +16,9 @@
     ViewData["Title"] = "Patient Dashboard";
 
     IEnumerable<AppointmentModel> appointmentses = await DbContext.Appointments.Where(x => x.Patient.Id == patient.Id).ToListAsync();
-    IEnumerable<AppointmentModel> approvedAppointments = await DbContext.Appointments.Include(x => x.Dentist).Where(x => x.Dentist != null).ToListAsync();
+    IEnumerable<AppointmentModel> approvedAppointments = await DbContext.Appointments
+        .Include(x => x.Dentist)
+        .Where(x => x.Dentist != null && x.Patient.Id == patient.Id).ToListAsync();
 
 }
 <div class="d-flex flex-row bd-highlight m-3">

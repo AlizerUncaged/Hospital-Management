@@ -47,7 +47,7 @@ public class AppointmentController : Controller
 
         await _dbContext.SaveChangesAsync();
 
-        return Redirect("/dentistdashboard");
+        return Redirect("/dentist-dashboard");
     }
 
     [HttpGet("/approve/{appointmentId}")]
@@ -66,6 +66,6 @@ public class AppointmentController : Controller
 
         await _dbContext.SaveChangesAsync();
 
-        return Redirect("/dentistdashboard");
+        return Redirect("/dentist-dashboard");
     }
 }

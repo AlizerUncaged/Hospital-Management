@@ -28,26 +28,32 @@ public class RegisterController : Controller
     public async Task<IActionResult> Register([FromForm] string name, [FromForm] string address,
         [FromForm] string birthdate, [FromForm] string gender,
         [FromForm] string cellphoneNumber, [FromForm] string licenseNumber, [FromForm] string password,
-        [FromForm] IFormFile image)
+        [FromForm] IFormFile? image)
     {
+        var dentistImage = string.Empty;
+        if (image is { })
+        {
+            var path = Path.Combine(_environment.WebRootPath, "images", "doctors");
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
+
+            path = Path.Combine(path, image.FileName);
+
+            using (FileStream stream = new FileStream(path, FileMode.Create))
+            {
+                await image.CopyToAsync(stream);
+                stream.Close();
+            }
+            
+            dentistImage = $"/images/doctors/{image.FileName}";
+        }
+
         var dentist = new Dentist()
         {
             Name = name, Address = address, Gender = gender, Birthdate = birthdate, CellphoneNumber = cellphoneNumber,
-            LicenseNumber = licenseNumber, UserName = name, DentistImage = $"/images/doctors/{image.FileName}"
+            LicenseNumber = licenseNumber, UserName = name, DentistImage = dentistImage
         };
-
-        var path = Path.Combine(_environment.WebRootPath, "images", "doctors");
-        if (!Directory.Exists(path))
-            Directory.CreateDirectory(path);
-
-        path = Path.Combine(path, image.FileName);
-
-        using (FileStream stream = new FileStream(path, FileMode.Create))
-        {
-            await image.CopyToAsync(stream);
-            stream.Close();
-        }
-
+        
         var newEntity = await _dbContext.Dentists.AddAsync(dentist);
 
         var registerResult = await _userManager.CreateAsync(dentist, password);
@@ -110,6 +116,6 @@ public class RegisterController : Controller
 
         await _dbContext.SaveChangesAsync();
 
-        return Redirect($"/Invoice?paid={paid}");
+        return Redirect($"/Invoice?appointmentId={newEntity.Entity.AppointmentId}");
     }
 }

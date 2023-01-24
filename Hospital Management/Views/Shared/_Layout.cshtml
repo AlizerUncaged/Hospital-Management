@@ -1,9 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
-@{
-    ViewData["Title"] = "Support Chat";
-}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -97,10 +95,10 @@
 @if (User.IsInRole("Admin"))
 {
     <div class="container-fluid row p-0">
-        <div class="col-4 col-md-2 container-fluid bg-dark text-white">
+        <div class="col-4 col-md-2 container-fluid bg-dark text-white" style="min-height:  100vh">
             <a href="/" class="d-flex align-items-center m-4 me-md-auto text-white text-decoration-none">
                 <i class="bi bi-pencil-square me-2"></i>
-                <span class="fs-4">Administrator</span>
+                <span class="h4">Administrator</span>
             </a>
 
             <ul class="nav nav-pills flex-column mb-auto navbar-dark">
@@ -125,22 +123,23 @@
             @RenderBody()
         </div>
     </div>
+
 }
 else if (User.IsInRole("Dentist"))
 {
     <div class="container-fluid row p-0">
-        <div class="col-5 col-md-3 container-fluid bg-dark text-white">
+        <div class="col-5 col-md-3 container-fluid bg-dark text-white pb-4" style="min-height:  100vh">
             <a href="/" class="d-flex align-items-center m-4 me-md-auto text-white text-decoration-none">
                 <svg style="width:24px;height:24px" viewBox="0 0 24 24">
                     <path fill="currentColor" d="M14.84,16.26C17.86,16.83 20,18.29 20,20V22H4V20C4,18.29 6.14,16.83 9.16,16.26L12,21L14.84,16.26M8,8H16V10A4,4 0 0,1 12,14A4,4 0 0,1 8,10V8M8,7L8.41,2.9C8.46,2.39 8.89,2 9.41,2H14.6C15.11,2 15.54,2.39 15.59,2.9L16,7H8M12,3H11V4H10V5H11V6H12V5H13V4H12V3Z"/>
                 </svg>
 
-                <span class="fs-4">Dentist</span>
+                <span class="h4">Dentist</span>
             </a>
 
             <ul class="nav nav-pills flex-column mb-auto navbar-dark">
                 <li class="nav-item text-white m-3">
-                    <a href="/doctor-appointment" class="nav-link text-white"><i class="bi bi-house me-2"></i> Appointments</a>
+                    <a href="/dentist-dashboard" class="nav-link text-white"><i class="bi bi-house me-2"></i> Appointments</a>
                 </li>
                 <li class="nav-item text-white m-3">
                     <a href="/doctor-patients" class="nav-link text-white"><i class="bi bi-person-fill-add me-2"></i> Patients</a>
@@ -148,11 +147,11 @@ else if (User.IsInRole("Dentist"))
                 <li class="nav-item text-white m-3">
                     <a href="/doctor-invoice" class="nav-link text-white"><i class="bi bi-people me-2"></i> Invoice</a>
                 </li>
+                @* <li class="nav-item text-white m-3"> *@
+                @*     <a href="/appointment-details" class="nav-link text-white"><i class="bi bi-file-earmark-image-fill me-2"></i> Appointment Details</a> *@
+                @* </li> *@
                 <li class="nav-item text-white m-3">
-                    <a href="/appointment-details" class="nav-link text-white"><i class="bi bi-file-earmark-image-fill me-2"></i> Appointment Details</a>
-                </li>
-                <li class="nav-item text-white m-3">
-                    <a href="/notifications" class="nav-link text-white"><i class="bi bi-chat-dots me-2"></i> Notification</a>
+                    <a href="/dentist-notification" class="nav-link text-white"><i class="bi bi-chat-dots me-2"></i> Notification</a>
                 </li>
             </ul>
         </div>
@@ -163,6 +162,7 @@ else if (User.IsInRole("Dentist"))
 }
 else
 {
+    @await Html.PartialAsync("Notifications")
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()

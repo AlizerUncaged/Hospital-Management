@@ -62,7 +62,7 @@ public class RoleCreation
             {
                 Name = "dentist", Address = "dentist", Gender = "dentist", Birthdate = DateTime.Now.ToString(),
                 CellphoneNumber = "123", Email = "dentist@dentist.com",
-                LicenseNumber = "dentist", UserName = "dentist", DentistImage = $"/images/doctors/image.png"
+                LicenseNumber = "dentist", UserName = "dentist", DentistImage = string.Empty
             };
 
             var newEntity = await _dbContext.Dentists.AddAsync(dentist);

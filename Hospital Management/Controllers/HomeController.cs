@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Hospital_Management.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 
 namespace Hospital_Management.Controllers;
@@ -16,15 +17,17 @@ public class HomeController : Controller
     private readonly ApplicationDbContext _dbContext;
     private readonly UserManager<IdentityUser> _userManager;
     private readonly IWebHostEnvironment _environment;
+    private readonly IHubContext<ChatHub> _hubContext;
 
     public HomeController(ILogger<HomeController> logger, RoleCreation roleCreation, ApplicationDbContext dbContext,
-        UserManager<IdentityUser> userManager, IWebHostEnvironment environment)
+        UserManager<IdentityUser> userManager, IWebHostEnvironment environment, IHubContext<ChatHub> hubContext)
     {
         _logger = logger;
         _roleCreation = roleCreation;
         _dbContext = dbContext;
         _userManager = userManager;
         _environment = environment;
+        _hubContext = hubContext;
     }
 
 
@@ -39,12 +42,6 @@ public class HomeController : Controller
         return Content("Cookies Cleared");
     }
 
-
-    [HttpGet("/doctor-appointment")]
-    public async Task<IActionResult> DoctorAppointment()
-    {
-        return View();
-    }
 
     [HttpGet("/doctor-invoice")]
     public async Task<IActionResult> Invoicing()
@@ -159,17 +156,17 @@ public class HomeController : Controller
     }
 
     [HttpGet("/invoice")]
-    public async Task<IActionResult> Receipt([FromQuery] double paid)
+    public async Task<IActionResult> Receipt([FromQuery] int appointmentId)
     {
-        var user = await _userManager.GetUserAsync(User);
-        var firstName = user.UserName;
-        var change = paid - 600;
+        // var user = await _userManager.GetUserAsync(User);
+        // var firstName = user.UserName;
+        // var change = paid - 600;
+        //
+        // ViewData["FName"] = firstName;
+        // ViewData["Change"] = change;
+        // ViewData["Paid"] = paid;
 
-        ViewData["FName"] = firstName;
-        ViewData["Change"] = change;
-        ViewData["Paid"] = paid;
-
-        return View();
+        return View(await _dbContext.Appointments.FirstOrDefaultAsync(x => x.AppointmentId == appointmentId));
     }
 
 
@@ -177,6 +174,25 @@ public class HomeController : Controller
     public async Task<IActionResult> AboutUs()
     {
         return View();
+    }
+
+    [HttpPost("/appointments/add/service/{appointmentId}")]
+    public async Task<IActionResult> AddAppointment(int appointmentId, [FromForm] string newservicename,
+        [FromForm] double newserviceamount)
+    {
+        var appointment = await _dbContext.Appointments.FirstOrDefaultAsync(x => x.AppointmentId == appointmentId);
+
+        var services = appointment
+            .Services.Split(",").ToList();
+        services.Add(newservicename + ":" + newserviceamount);
+
+        appointment.Services = string.Join(",", services);
+
+        _dbContext.Appointments.Update(appointment);
+
+        await _dbContext.SaveChangesAsync();
+
+        return Redirect("/dentist-dashboard");
     }
 
     [HttpGet("/patients")]
@@ -221,8 +237,8 @@ public class HomeController : Controller
         return View();
     }
 
-    [HttpGet("/dentistdashboard")]
-    public async Task<IActionResult> Dentists()
+    [HttpGet("/dentist-dashboard")]
+    public async Task<IActionResult> DoctorAppointment()
     {
         var currentUser = await _userManager.GetUserAsync(User);
 
@@ -230,7 +246,22 @@ public class HomeController : Controller
             await _dbContext.Dentists.FirstOrDefaultAsync(x => x.Id == currentUser.Id);
 
         ViewData["Dentist"] = currentDoctor;
+
         return View();
+    }
+
+    [HttpGet("/dentist-notification")]
+    public async Task<IActionResult> DentistNotification()
+    {
+        return View();
+    }
+
+    [HttpPost("/dentist-notification")]
+    public async Task<IActionResult> DentistNotificationPost([FromForm] string notificationText,
+        [FromForm] string patientId)
+    {
+        await _hubContext.Clients.All.SendAsync("ReceiveNotification", patientId, notificationText);
+        return Redirect("/dentist-notification");
     }
 
     [HttpGet("/patientdashboard")]
@@ -294,7 +325,7 @@ public class HomeController : Controller
         // Send to dashboards.
         if (User.IsInRole("Dentist"))
         {
-            return Redirect("/dentistdashboard");
+            return Redirect("/dentist-dashboard");
         }
 
         if (User.IsInRole("Patient"))
