@@ -83,6 +83,7 @@ public class HomeController : Controller
     {
         var samePatient = await _dbContext.Patients.FirstOrDefaultAsync(x => x.Id == patient.Id);
         samePatient.Name = patient.Name;
+        samePatient.UserName = patient.Name;
         samePatient.Address = patient.Address;
         samePatient.Birthdate = patient.Birthdate;
         samePatient.CellphoneNumber = patient.CellphoneNumber;
@@ -207,6 +208,16 @@ public class HomeController : Controller
         return View();
     }
 
+    [HttpGet("/patient-messages/")]
+    [HttpGet("/patient-messages/{targetId}")]
+    public async Task<IActionResult> PatientChatList(string? targetId = null)
+    {
+        ViewData["Target"] = targetId;
+
+        var targetUser = await _userManager.FindByIdAsync(targetId);
+        return View(targetUser);
+    }
+    
     [HttpGet("/messages")]
     public async Task<IActionResult> AdminMessaging()
     {
@@ -250,18 +261,18 @@ public class HomeController : Controller
         return View();
     }
 
-    [HttpGet("/dentist-notification")]
-    public async Task<IActionResult> DentistNotification()
-    {
-        return View();
-    }
+    // [HttpGet("/dentist-notification")]
+    // public async Task<IActionResult> DentistNotification()
+    // {
+    //     return View();
+    // }
 
     [HttpPost("/dentist-notification")]
     public async Task<IActionResult> DentistNotificationPost([FromForm] string notificationText,
         [FromForm] string patientId)
     {
         await _hubContext.Clients.All.SendAsync("ReceiveNotification", patientId, notificationText);
-        return Redirect("/dentist-notification");
+        return Redirect("/doctor-patients");
     }
 
     [HttpGet("/patientdashboard")]

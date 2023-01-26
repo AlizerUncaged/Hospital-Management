@@ -43,25 +43,13 @@
                 <th scope="col">Image</th>
                 <th scope="col">Email</th>
                 <th scope="col">Age</th>
-                <th scope="col">Services</th>
                 <th scope="col">Actions</th>
             </tr>
             </thead>
             <tbody>
             @foreach (var patient in patients)
             {
-                var age = "0";
-                try
-                {
-                    age = Math.Abs(DateTime.Now.Year - DateTime.Parse(patient.Birthdate).Year).ToString();
-                }
-                catch
-                {
-                }
-                
                 var services = patient.Appointments.SelectMany(x => x.Services.Split(",")).Distinct();
-                var takenServices = string.Join(", ", services);
-                takenServices = string.IsNullOrWhiteSpace(takenServices) ? "<None>" : takenServices;
                 <tr>
                     <th scope="row">@(patients.IndexOf(patient) + 1)</th>
                     <td>@patient.Name</td>
@@ -69,12 +57,8 @@
                         <img style="max-height: 75px" class="img-fluid rounded-3" src="@patient.Image"/>
                     </td>
                     <td>@patient.Email</td>
-                    <td>@age</td>
-                    <td>@takenServices</td>
                     <td class="container d-flex flex-column">
-                        <button onclick="setModal('@patient.Id', 'Send a notification to @patient.FullName')" type="button" data-bs-toggle="modal" data-bs-target="#modal" class="btn-primary btn rounded-3 m-1">
-                            <i class="bi bi-pencil-square"></i> Notify
-                        </button>
+                      
                     </td>
                 </tr>
             }
@@ -89,26 +73,3 @@
         </table>
     </div>
 </div>
-<form method="post" action="">
-    <div class="modal fade" id="modal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"><i class="bi bi-bell-fill"></i>Notification</h5>
-                    @* <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> *@
-                </div>
-                <div class="modal-body">
-                    <input id="patientId" type="hidden" name="patientId" class="form-control" aria-required="true"/>
-                    <p id="desc"></p>
-                    <div class="mb-3 form-floating">
-                        <input id="notificationText" type="text" name="notificationText" class="form-control" aria-required="true"/>
-                        <label for="notificationText">Notification Text</label>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal"><i class="bi bi-send-fill"></i> Send</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</form>

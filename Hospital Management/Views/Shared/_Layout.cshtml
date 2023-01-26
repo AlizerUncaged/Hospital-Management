@@ -80,17 +80,30 @@
                             <a class="nav-link text-dark" href="/smile-makeovers">Smile Makeovers</a>
                         </li>
                     }
+                    else if (User.IsInRole("Patient"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="/patient-messages"><i class="bi bi-chat-dots"></i> View Chats</a>
+                        </li>
+                        @* <li class="nav-item"> *@
+                        @*     <a class="nav-link text-dark" href="/patient-messages"><i class="bi bi-pencil-square"></i> Edit Profile</a> *@
+                        @* </li> *@
+                        @* <li class="nav-item"> *@
+                        @*     <a class="nav-link text-dark" href="/patient-messages"><i class="bi bi-credit-card-2-back-fill"></i> History</a> *@
+                        @* </li> *@
+                    }
                 </ul>
                 <partial name="_LoginPartial"/>
             </div>
         </div>
     </nav>
 </header>
-<div class="position-fixed fixed-bottom end-0 d-flex flex-row-reverse" style="pointer-events: none">
-    <button class="rounded-5 btn-success btn m-4" style="pointer-events: all">
-        <i class="bi bi-chat-fill"></i> Chat
-    </button>
-</div>
+
+@* <div class="position-fixed fixed-bottom end-0 d-flex flex-row-reverse" style="pointer-events: none"> *@
+@*     <button class="rounded-5 btn-success btn m-4" style="pointer-events: all"> *@
+@*         <i class="bi bi-chat-fill"></i> Chat *@
+@*     </button> *@
+@* </div> *@
 
 @if (User.IsInRole("Admin"))
 {
@@ -123,7 +136,6 @@
             @RenderBody()
         </div>
     </div>
-
 }
 else if (User.IsInRole("Dentist"))
 {
@@ -150,9 +162,9 @@ else if (User.IsInRole("Dentist"))
                 @* <li class="nav-item text-white m-3"> *@
                 @*     <a href="/appointment-details" class="nav-link text-white"><i class="bi bi-file-earmark-image-fill me-2"></i> Appointment Details</a> *@
                 @* </li> *@
-                <li class="nav-item text-white m-3">
-                    <a href="/dentist-notification" class="nav-link text-white"><i class="bi bi-chat-dots me-2"></i> Notification</a>
-                </li>
+                @* <li class="nav-item text-white m-3"> *@
+                @*     <a href="/dentist-notification" class="nav-link text-white"><i class="bi bi-chat-dots me-2"></i> Notification</a> *@
+                @* </li> *@
             </ul>
         </div>
         <div class="col-7 col-md-9 p-0">
@@ -160,9 +172,17 @@ else if (User.IsInRole("Dentist"))
         </div>
     </div>
 }
-else
+else if (User.IsInRole("Patient"))
 {
     @await Html.PartialAsync("Notifications")
+    <div class="container-fluid p-0 row">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+}
+else
+{
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
