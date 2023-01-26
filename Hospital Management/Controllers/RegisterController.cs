@@ -1,4 +1,5 @@
-﻿using Hospital_Management.Data;
+﻿using System.Web;
+using Hospital_Management.Data;
 using Hospital_Management.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -25,11 +26,17 @@ public class RegisterController : Controller
     }
 
     [HttpPost("/registerDoctor")]
-    public async Task<IActionResult> Register([FromForm] string name, [FromForm] string address,
+    public async Task<IActionResult> Register([FromForm] string name, [FromForm] string email, [FromForm] string address,
         [FromForm] string birthdate, [FromForm] string gender,
         [FromForm] string cellphoneNumber, [FromForm] string licenseNumber, [FromForm] string password,
         [FromForm] IFormFile? image)
     {
+
+        if (await _userManager.FindByEmailAsync(email) is { } user)
+        {
+            return Redirect($"/registerDoctor?error={HttpUtility.UrlEncode("Email already registered!")}");
+        }
+
         var dentistImage = string.Empty;
         if (image is { })
         {
@@ -51,7 +58,7 @@ public class RegisterController : Controller
         var dentist = new Dentist()
         {
             Name = name, Address = address, Gender = gender, Birthdate = birthdate, CellphoneNumber = cellphoneNumber,
-            LicenseNumber = licenseNumber, UserName = name, DentistImage = dentistImage
+            LicenseNumber = licenseNumber, UserName = name, DentistImage = dentistImage, Email = email
         };
         
         var newEntity = await _dbContext.Dentists.AddAsync(dentist);
@@ -73,7 +80,12 @@ public class RegisterController : Controller
     public async Task<IActionResult> RegisterPatient([FromForm] string name, [FromForm] string address,
         [FromForm] string birthdate, [FromForm] string gender, [FromForm] string email,
         [FromForm] string cellphoneNumber, [FromForm] string guardian, [FromForm] string password)
-    {
+    {    
+        if (await _userManager.FindByEmailAsync(email) is { } user)
+        {
+            return Redirect($"/registerPatient?error={HttpUtility.UrlEncode("Email already registered!")}");
+        }
+        
         var dentist = new Patient()
         {
             Name = name, Address = address, Gender = gender, Birthdate = birthdate, CellphoneNumber = cellphoneNumber,

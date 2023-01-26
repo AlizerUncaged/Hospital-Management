@@ -40,7 +40,7 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
-                <th scope="col">Image</th>
+                @* <th scope="col">Image</th> *@
                 <th scope="col">Email</th>
                 <th scope="col">Age</th>
                 <th scope="col">Services</th>
@@ -56,11 +56,11 @@
                 <tr>
                     <th scope="row">@(patients.IndexOf(patient) + 1)</th>
                     <td>@patient.Name</td>
-                    <td>
-                        <img style="max-height: 100px" class="img-fluid rounded-3" src="@patient.Image"/>
-                    </td>
+                    @* <td> *@
+                    @*     <img style="max-height: 100px" class="img-fluid rounded-3" src="@patient.Image"/> *@
+                    @* </td> *@
                     <td>@patient.Email</td>
-                    <td>@Math.Abs(DateTime.Now.Year - DateTime.Parse(patient.Birthdate).Year)</td>
+                    <td>@patient.Birthdate</td>
                     <td>@takenServices</td>
                     <td class="container d-flex flex-column">
                         <a class="btn-primary btn rounded-3 m-1" href="/patients/edit/@patient.Id">

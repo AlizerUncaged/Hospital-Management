@@ -62,7 +62,7 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Patient Name</th>
-                        <th scope="col">Date Created</th>
+                        <th scope="col">Time</th>
                         <th scope="col">Appointment Date</th>
                         <th scope="col">Services</th>
                         <th scope="col">Status</th>
@@ -89,7 +89,7 @@
                         <tr>
                             <th scope="row">@appointment.AppointmentId</th>
                             <td>@appointment.Patient.FullName</td>
-                            <td>@appointment.DateCreated</td>
+                            <td>@appointment.Date?.ToString("hh:mm tt")</td>
                             <td>@appointment.Date?.ToString("MMMM d, yyyy", new CultureInfo("en-US"))</td>
                             <td>@appointment.Services</td>
                             <td>@status</td>

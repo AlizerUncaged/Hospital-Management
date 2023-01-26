@@ -33,7 +33,7 @@
         </a>
 
         <ul class="nav nav-pills flex-column mb-auto">
-            @foreach (var chat in allChats)
+            @foreach (var chat in allChats.DistinctBy(x => x.To.Id).DistinctBy(x => x.From.Id))
             {
                 var otherPerson = chat.To;
                 if (chat.To.Id == currentUser.Id)
@@ -73,7 +73,7 @@
             var currentChats = await DbContext.Chats.Include(x => x.From)
                 .Include(x => x.To)
                 .Where(x => x.From.Id == Model.Id && x.To.Id == currentUser.Id).ToListAsync();
-            
+
             ViewData["Title"] = $"Chat with {Model.UserName}";
 
             <div class="container-fluid p-0" style="height: calc(100% - 60px)">

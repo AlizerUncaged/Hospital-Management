@@ -1,9 +1,23 @@
-﻿@{
+﻿@inject IHttpContextAccessor HttpContextAccessor
+@{
     ViewData["Title"] = "Register Patient";
+    var error = string.Empty;
+    if (HttpContextAccessor.HttpContext.Request.Query.TryGetValue("error", out var errorString))
+    {
+        error = errorString.ToString();
+    }
 }
 
-<h1>@ViewData["Title"]</h1>
 
+<div class="row container-fluid">
+    @if (!string.IsNullOrWhiteSpace(error))
+    {
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>An error occured!</strong> @error
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+</div>
 <div class="row">
     <div class="container">
         <form id="registerForm" action="/registerPatient" method="post">
@@ -42,10 +56,10 @@
                 <input type="number" id="cellphoneNumber" name="cellphoneNumber" class="form-control" aria-required="true"/>
                 <label for="cellphoneNumber">Cellphone Number</label>
             </div>
-            <div class="form-floating mb-3">
-                <input type="text" id="guardian" name="guardian" class="form-control" aria-required="true"/>
-                <label for="guardian">Guardian</label>
-            </div>
+            @* <div class="form-floating mb-3"> *@
+            @*     <input type="text" id="guardian" name="guardian" class="form-control" aria-required="true"/> *@
+            @*     <label for="guardian">Guardian</label> *@
+            @* </div> *@
             <div class="form-floating mb-3">
                 <input type="password" id="password" name="password" class="form-control" aria-required="true"/>
                 <label for="password">Password</label>
