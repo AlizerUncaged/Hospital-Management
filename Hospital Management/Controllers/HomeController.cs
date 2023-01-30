@@ -324,6 +324,14 @@ public class HomeController : Controller
         return true;
     }
 
+    [HttpGet("/install")]
+    public async Task<IActionResult> Install()
+    {
+        await _roleCreation.CreateRolesAsync();
+        
+        return Content("Database Reset!");
+    }
+
     public async Task<IActionResult> Index()
     {
         await _roleCreation.CreateRolesAsync();
