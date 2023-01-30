@@ -11,22 +11,22 @@ namespace Hospital_Management.Models
 
         public virtual List<AppointmentModel> Appointments { get; set; } = new List<AppointmentModel>();
 
-        [FromForm()] public string Name { get; set; }
+        [FromForm()] public string? Name { get; set; }
 
-        public string FullName => UserName;
+        public string? FullName => UserName;
 
-        [FromForm()] public string Address { get; set; }
+        [FromForm()] public string? Address { get; set; }
 
         // [DataType(DataType.Date)]
         // [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString =  "{0:yyyy-MM-ddTHH:mm}")]
         [FromForm()]
-        public string Birthdate { get; set; }
+        public string? Birthdate { get; set; }
 
-        [FromForm()] public string Gender { get; set; }
+        [FromForm()] public string? Gender { get; set; }
 
-        [FromForm()] public string Guardian { get; set; }
+        [FromForm()] public string? Guardian { get; set; }
 
-        [Display(Name = "Cellphone Number")] public string CellphoneNumber { get; set; }
+        [Display(Name = "Cellphone Number")] public string? CellphoneNumber { get; set; }
 
         [FromForm()] public string? Tag { get; set; }
 
