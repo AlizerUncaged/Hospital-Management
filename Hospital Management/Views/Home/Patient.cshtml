@@ -37,7 +37,8 @@
                 <h4 class="alert-heading">Dr. @appointments.Dentist.Name</h4>
                 <p>@appointments.Note</p>
                 <hr>
-                <p class="mb-0">Created at @appointments.DateCreated</p>
+                <p class="mb-0">Created at<strong> @appointments.DateCreated</strong></p>
+                <p class="mb-0">Service<strong> @appointments.Services</strong></p>
                 <a href="/delete/@appointments.AppointmentId" class="btn btn-danger">Delete</a>
             </div>
         }

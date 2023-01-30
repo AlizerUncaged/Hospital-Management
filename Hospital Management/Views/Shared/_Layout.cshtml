@@ -83,6 +83,19 @@
                     else if (User.IsInRole("Patient"))
                     {
                         <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="/aboutus">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="/services">Services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="/smile-makeovers">Smile Makeovers</a>
+                        </li>
+                        
+                        <li class="nav-item">
                             <a class="nav-link text-dark" href="/patient-messages"><i class="bi bi-chat-dots"></i> View Chats</a>
                         </li>
                         @* <li class="nav-item"> *@
@@ -175,7 +188,7 @@ else if (User.IsInRole("Dentist"))
 else if (User.IsInRole("Patient"))
 {
     @await Html.PartialAsync("Notifications")
-    <div class="container-fluid p-0 row">
+    <div class="container p-0">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>

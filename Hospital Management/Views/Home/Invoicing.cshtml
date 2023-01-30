@@ -167,6 +167,10 @@
                     @Html.TextBoxFor(m => m.Date, htmlAttributes: textBoxClasses)
                     @Html.LabelFor(x => x.Date)
                 </div>
+                <div class="form-floating mb-3">
+                    @Html.TextBoxFor(m => m.Dentist.UserName, htmlAttributes: textBoxClasses)
+                    @Html.LabelFor(x => x.Dentist.UserName)
+                </div>
             </div>
             <table class="table">
                 <thead>
