@@ -55,8 +55,9 @@
                 <h4 class="alert-heading"></h4>
                 <p>@appointments.Note</p>
                 <hr>
-                <p class="mb-0">Created at @appointments.DateCreated</p>
-                <a href="/delete/@appointments.AppointmentId" class="btn btn-danger m-2">Delete</a>
+                <p class="mb-0">Created at<strong> @appointments.DateCreated</strong></p>
+                <p class="mb-0">Service<strong> @appointments.Services</strong></p>
+                <a href="/delete/@appointments.AppointmentId" class="btn btn-danger">Delete</a>
             </div>
         }
     }
