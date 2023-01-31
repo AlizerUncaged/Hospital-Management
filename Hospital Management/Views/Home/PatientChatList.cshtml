@@ -14,16 +14,23 @@
 
     string? targetId = (string?)ViewData["Target"];
 
-    var userChats = await DbContext.Chats.Where(x => x.From.Id == Model.Id || x.To.Id == Model.Id).ToListAsync();
+    List<Chat> chatsWidthD = new List<Chat>();
 
-    var userChatsWithDentist = userChats.Where(x => x.From.Id == currentUser.Id || x.To.Id == currentUser.Id).ToList();
 
-    var dentistChats = await DbContext.Chats.Where(x => x.From.Id == currentUser.Id || x.To.Id == currentUser.Id).ToListAsync();
+    if (Model is IdentityUser user)
+    {
 
-    var dentistChatsWithUser = dentistChats.Where(x => x.From.Id == Model.Id || x.To.Id == Model.Id).ToList();
+        var userChats = await DbContext.Chats.Where(x => x.From.Id == Model.Id || x.To.Id == Model.Id).ToListAsync();
 
-    var chatsWidthD = dentistChatsWithUser.Concat(userChatsWithDentist).Distinct().OrderBy(x => x.SentTime).ToList();
-    
+        var userChatsWithDentist = userChats.Where(x => x.From.Id == currentUser.Id || x.To.Id == currentUser.Id).ToList();
+
+        var dentistChats = await DbContext.Chats.Where(x => x.From.Id == currentUser.Id || x.To.Id == currentUser.Id).ToListAsync();
+
+        var dentistChatsWithUser = dentistChats.Where(x => x.From.Id == Model.Id || x.To.Id == Model.Id).ToList();
+
+        chatsWidthD = dentistChatsWithUser.Concat(userChatsWithDentist).Distinct().OrderBy(x => x.SentTime).ToList();
+
+    }
     var allChatsQueries = DbContext.Chats.Include(x => x.From)
         .Include(x => x.To)
         .Where(x => x.To != null && x.From != null)
