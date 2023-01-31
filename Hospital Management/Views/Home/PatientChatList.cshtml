@@ -14,6 +14,16 @@
 
     string? targetId = (string?)ViewData["Target"];
 
+    var userChats = await DbContext.Chats.Where(x => x.From.Id == Model.Id || x.To.Id == Model.Id).ToListAsync();
+
+    var userChatsWithDentist = userChats.Where(x => x.From.Id == currentUser.Id || x.To.Id == currentUser.Id).ToList();
+
+    var dentistChats = await DbContext.Chats.Where(x => x.From.Id == currentUser.Id || x.To.Id == currentUser.Id).ToListAsync();
+
+    var dentistChatsWithUser = dentistChats.Where(x => x.From.Id == Model.Id || x.To.Id == Model.Id).ToList();
+
+    var chatsWidthD = dentistChatsWithUser.Concat(userChatsWithDentist).Distinct().OrderBy(x => x.SentTime).ToList();
+    
     var allChatsQueries = DbContext.Chats.Include(x => x.From)
         .Include(x => x.To)
         .Where(x => x.To != null && x.From != null)
@@ -33,18 +43,32 @@
         </a>
 
         <ul class="nav nav-pills flex-column mb-auto">
-            @foreach (var chat in allChats.DistinctBy(x => x.To.Id).DistinctBy(x => x.From.Id))
-            {
-                var otherPerson = chat.To;
-                if (chat.To.Id == currentUser.Id)
-                    otherPerson = chat.From;
-
-                string? profilePic = string.Empty;
-                if (otherPerson is Dentist dentist)
+            @{
+                List<Dentist> dentistsOnChat = new();
+                foreach (var chat in allChats)
                 {
-                    profilePic = dentist.DentistImage;
+                    {
+                        if (chat.To is Dentist dentist)
+                        {
+                            dentistsOnChat.Add(dentist);
+                        }
+                    }
+                    {
+                        if (chat.From is Dentist dentist)
+                        {
+                            dentistsOnChat.Add(dentist);
+                        }
+                    }
                 }
 
+                dentistsOnChat = dentistsOnChat.GroupBy(x => x.Id).Select(x => x.FirstOrDefault()).ToList();
+            }
+
+            @foreach (var dentist in dentistsOnChat)
+            {
+                var otherPerson = dentist;
+                string? profilePic = dentist.DentistImage;
+                
                 <li class="nav-item text-white m-3">
                     <a href="/patient-messages/@otherPerson.Id" class="nav-link text-white">
                         @if (!string.IsNullOrWhiteSpace(profilePic))
@@ -70,9 +94,7 @@
         </style>
         @if (Model is {})
         {
-            var currentChats = await DbContext.Chats.Include(x => x.From)
-                .Include(x => x.To)
-                .Where(x => x.From.Id == Model.Id && x.To.Id == currentUser.Id).ToListAsync();
+            var currentChats = chatsWidthD;
 
             ViewData["Title"] = $"Chat with {Model.UserName}";
 
@@ -108,7 +130,7 @@
                                         {
                                             <div class="d-flex flex-row bd-highlight mb-3">
                                                 <div class=" bd-highlight border-2 rounded-3 border border-primary p-2">
-                                                    <p class="opacity-50">@currentUser.UserName - @DateTime.Now.ToString("f")</p>
+                                                    <p class="opacity-50">@chat.To.UserName - @DateTime.Now.ToString("f")</p>
                                                     <p class="m-0 p-0 my-auto ms-2">@chat.Content</p>
                                                 </div>
                                             </div>

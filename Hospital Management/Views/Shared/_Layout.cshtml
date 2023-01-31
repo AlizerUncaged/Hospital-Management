@@ -188,7 +188,7 @@ else if (User.IsInRole("Dentist"))
 else if (User.IsInRole("Patient"))
 {
     @await Html.PartialAsync("Notifications")
-    <div class="container p-0">
+    <div class="container-fluid p-0">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
