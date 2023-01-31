@@ -79,8 +79,12 @@ public class RegisterController : Controller
     [HttpPost("/registerPatient")]
     public async Task<IActionResult> RegisterPatient([FromForm] string name, [FromForm] string address,
         [FromForm] string birthdate, [FromForm] string gender, [FromForm] string email,
-        [FromForm] string cellphoneNumber, [FromForm] string guardian, [FromForm] string password)
-    {    
+        [FromForm] string cellphoneNumber, [FromForm] string? guardian, [FromForm] string password)
+    {
+        
+        if (string.IsNullOrWhiteSpace(guardian))
+            guardian = string.Empty;
+        
         if (await _userManager.FindByEmailAsync(email) is { } user)
         {
             return Redirect($"/registerPatient?error={HttpUtility.UrlEncode("Email already registered!")}");
