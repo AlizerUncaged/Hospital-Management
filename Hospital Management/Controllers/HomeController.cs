@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Security.Claims;
 using Hospital_Management.Data;
+using Hospital_Management.Middlewares;
 using Microsoft.AspNetCore.Mvc;
 using Hospital_Management.Models;
 using Microsoft.AspNetCore.Authentication;
@@ -18,9 +19,10 @@ public class HomeController : Controller
     private readonly UserManager<IdentityUser> _userManager;
     private readonly IWebHostEnvironment _environment;
     private readonly IHubContext<ChatHub> _hubContext;
+    private readonly Surveyor _surveyor;
 
     public HomeController(ILogger<HomeController> logger, RoleCreation roleCreation, ApplicationDbContext dbContext,
-        UserManager<IdentityUser> userManager, IWebHostEnvironment environment, IHubContext<ChatHub> hubContext)
+        UserManager<IdentityUser> userManager, IWebHostEnvironment environment, IHubContext<ChatHub> hubContext, Surveyor surveyor)
     {
         _logger = logger;
         _roleCreation = roleCreation;
@@ -28,6 +30,7 @@ public class HomeController : Controller
         _userManager = userManager;
         _environment = environment;
         _hubContext = hubContext;
+        _surveyor = surveyor;
     }
 
 

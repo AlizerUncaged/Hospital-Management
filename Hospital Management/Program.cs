@@ -2,6 +2,7 @@ using Hospital_Management.Controllers;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Hospital_Management.Data;
+using Hospital_Management.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -49,10 +50,13 @@ else
     app.UseHsts();
 }
 
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseMiddleware<Surveyor>();
 
 app.UseAuthorization();
 
