@@ -13,11 +13,16 @@
     // current doctor
     var currentUser = (await UserManager.GetUserAsync(User));
 
-    var userChats = await DbContext.Chats.Where(x => x.From.Id == Model.Id || x.To.Id == Model.Id).ToListAsync();
+    var userChats = await DbContext.Chats
+        .Include(x => x.From)
+        .Include(x => x.To)
+        .Where(x => x.From.Id == Model.Id || x.To.Id == Model.Id).ToListAsync();
 
     var userChatsWithDentist = userChats.Where(x => x.From.Id == currentUser.Id || x.To.Id == currentUser.Id).ToList();
 
-    var dentistChats = await DbContext.Chats.Where(x => x.From.Id == currentUser.Id || x.To.Id == currentUser.Id).ToListAsync();
+    var dentistChats = await DbContext.Chats
+        .Include(x => x.From)
+        .Include(x => x.To).Where(x => x.From.Id == currentUser.Id || x.To.Id == currentUser.Id).ToListAsync();
 
     var dentistChatsWithUser = dentistChats.Where(x => x.From.Id == Model.Id || x.To.Id == Model.Id).ToList();
 

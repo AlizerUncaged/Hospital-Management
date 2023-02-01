@@ -19,10 +19,9 @@ public class HomeController : Controller
     private readonly UserManager<IdentityUser> _userManager;
     private readonly IWebHostEnvironment _environment;
     private readonly IHubContext<ChatHub> _hubContext;
-    private readonly Surveyor _surveyor;
 
     public HomeController(ILogger<HomeController> logger, RoleCreation roleCreation, ApplicationDbContext dbContext,
-        UserManager<IdentityUser> userManager, IWebHostEnvironment environment, IHubContext<ChatHub> hubContext, Surveyor surveyor)
+        UserManager<IdentityUser> userManager, IWebHostEnvironment environment, IHubContext<ChatHub> hubContext)
     {
         _logger = logger;
         _roleCreation = roleCreation;
@@ -30,7 +29,6 @@ public class HomeController : Controller
         _userManager = userManager;
         _environment = environment;
         _hubContext = hubContext;
-        _surveyor = surveyor;
     }
 
 

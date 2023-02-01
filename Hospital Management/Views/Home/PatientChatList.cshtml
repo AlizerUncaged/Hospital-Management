@@ -14,23 +14,28 @@
 
     string? targetId = (string?)ViewData["Target"];
 
+    var adminUser = await UserManager.FindByEmailAsync("Admin@admin.com");
+
     List<Chat> chatsWidthD = new List<Chat>();
 
 
     if (Model is IdentityUser user)
     {
-
-        var userChats = await DbContext.Chats.Where(x => x.From.Id == Model.Id || x.To.Id == Model.Id).ToListAsync();
+        var userChats = await DbContext.Chats
+            .Include(x => x.From)
+            .Include(x => x.To).Where(x => x.From.Id == Model.Id || x.To.Id == Model.Id).ToListAsync();
 
         var userChatsWithDentist = userChats.Where(x => x.From.Id == currentUser.Id || x.To.Id == currentUser.Id).ToList();
 
-        var dentistChats = await DbContext.Chats.Where(x => x.From.Id == currentUser.Id || x.To.Id == currentUser.Id).ToListAsync();
+        var dentistChats = await DbContext.Chats
+            .Include(x => x.From)
+            .Include(x => x.To).Where(x => x.From.Id == currentUser.Id || x.To.Id == currentUser.Id).ToListAsync();
 
         var dentistChatsWithUser = dentistChats.Where(x => x.From.Id == Model.Id || x.To.Id == Model.Id).ToList();
 
         chatsWidthD = dentistChatsWithUser.Concat(userChatsWithDentist).Distinct().OrderBy(x => x.SentTime).ToList();
-
     }
+
     var allChatsQueries = DbContext.Chats.Include(x => x.From)
         .Include(x => x.To)
         .Where(x => x.To != null && x.From != null)
@@ -71,11 +76,17 @@
                 dentistsOnChat = dentistsOnChat.GroupBy(x => x.Id).Select(x => x.FirstOrDefault()).ToList();
             }
 
+            <li class="nav-item text-white m-3">
+                <a href="/patient-messages/@adminUser.Id" class="nav-link text-white">
+                    Administrator
+                </a>
+            </li>
+
             @foreach (var dentist in dentistsOnChat)
             {
                 var otherPerson = dentist;
                 string? profilePic = dentist.DentistImage;
-                
+
                 <li class="nav-item text-white m-3">
                     <a href="/patient-messages/@otherPerson.Id" class="nav-link text-white">
                         @if (!string.IsNullOrWhiteSpace(profilePic))
@@ -124,7 +135,6 @@
                                 <div class="chat-box h-100" style="overflow-y: scroll; scrollbar-width: none;  -ms-overflow-style: none;" id="messagesList">
                                     @foreach (var chat in currentChats)
                                     {
-                                        
                                         if (chat.From.Id == currentUser.Id)
                                         {
                                             <div class="d-flex flex-row-reverse bd-highlight mb-3">

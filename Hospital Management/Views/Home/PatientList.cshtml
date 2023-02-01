@@ -45,6 +45,7 @@
                 <th scope="col">Cellphone #</th>
                 <th scope="col">Email</th>
                 <th scope="col">Appointments</th>
+                <th scope="col">Actions</th>
             </tr>
             </thead>
             <tbody>
@@ -59,6 +60,11 @@
                     <td>@patient.CellphoneNumber</td>
                     <td>@patient.Email</td>
                     <td>@patient.Appointments.Count</td>
+                    <td>
+                        <a class="btn btn-success rounded-3 m-1" href="/chat/@patient.Id">
+                            <i class="bi bi-chat-fill"></i> Chat
+                        </a>
+                    </td>
                 </tr>
             }
             </tbody>
