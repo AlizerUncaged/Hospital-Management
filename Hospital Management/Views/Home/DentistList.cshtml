@@ -15,7 +15,7 @@
     }
 
     var dentists = await DbContext.Dentists.ToListAsync();
-    dentists = dentists.Where(x => x.UserName.ToLower().Contains(search.ToLower())).ToList();
+    dentists = dentists.Where(x => x.UserName.ToLower().Contains(search.ToLower()) && x.Email != RoleCreation.DentistEmail).ToList();
 
 }
 

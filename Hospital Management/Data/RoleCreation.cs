@@ -10,6 +10,7 @@ public class RoleCreation
     private readonly UserManager<IdentityUser> _userManager;
     private readonly ApplicationDbContext _dbContext;
 
+    public const string DentistEmail = "dentist@dentist.com", PatientEmail ="patient@patient.com";
     public RoleCreation(IServiceProvider serviceProvider, RoleManager<IdentityRole> roleManager,
         UserManager<IdentityUser> userManager, ApplicationDbContext dbContext)
     {
@@ -44,7 +45,7 @@ public class RoleCreation
             {
                 Name = "patient", Address = "patient", Gender = "patient", Birthdate = DateTime.Now.ToString(),
                 CellphoneNumber = "123",
-                Guardian = "patient", UserName = "patient", Email = "patient@patient.com"
+                Guardian = "patient", UserName = "patient", Email = PatientEmail
             };
 
             var newEntity = await _dbContext.Patients.AddAsync(patient);
@@ -61,7 +62,7 @@ public class RoleCreation
             var dentist = new Dentist()
             {
                 Name = "dentist", Address = "dentist", Gender = "dentist", Birthdate = DateTime.Now.ToString(),
-                CellphoneNumber = "123", Email = "dentist@dentist.com",
+                CellphoneNumber = "123", Email = DentistEmail,
                 LicenseNumber = "dentist", UserName = "dentist", DentistImage = string.Empty
             };
 

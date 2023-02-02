@@ -16,7 +16,7 @@
     }
 
     var patients = await DbContext.Patients.Include(x => x.Appointments).ToListAsync();
-    patients = patients.Where(x => x.UserName.ToLower().Contains(search.ToLower())).ToList();
+    patients = patients.Where(x => x.UserName.ToLower().Contains(search.ToLower()) && x.Email!=  RoleCreation.PatientEmail).ToList();
 
 }
 
@@ -42,7 +42,7 @@
                 <th scope="col">Name</th>
                 @* <th scope="col">Image</th> *@
                 <th scope="col">Email</th>
-                <th scope="col">Age</th>
+                <th scope="col">Birthdate</th>
                 <th scope="col">Services</th>
                 <th scope="col" style="width: 20%">Actions</th>
             </tr>
