@@ -109,18 +109,19 @@
         return console.error(err.toString());
     });
     
-    var targetUser = '@(Model.UserName)';
-    var currentUser = '@(User.Identity.Name)';
+    var targetUser = '@(Model.Id)';
+    var currentUser = '@(UserManager.GetUserId(User))';
     
     function isEmptyOrSpaces(str){
         return str === null || str.match(/^ *$/) !== null;
     }
 
-    connection.on("ReceiveMessage", function (user, message) {
+    connection.on("ReceiveMessage", function (from, user, message) {
         var msg = message.replace(/&/g, "&").replace(/&/g, ">");
+        console.log(`From: ${from} target: ${targetUser} User: ${user}`)
         var encodedMsg = msg;
         let messageHtml = null;
-        if (user === currentUser)
+        if (user === currentUser && from === targetUser)
         messageHtml = `
 <div class="d-flex flex-row-reverse bd-highlight mb-3">
           <div class=" bd-highlight border-2 rounded-3 border border-primary p-2">
@@ -129,7 +130,7 @@
 </div>
         </div>
         `;
-        else 
+        else if (from === currentUser && user === targetUser)
             {
                  messageHtml = `
                 <div class="d-flex flex-row bd-highlight mb-3">
@@ -156,11 +157,11 @@
     
     document.getElementById("sendButton").addEventListener("click", function (event) {
         var message = document.getElementById("messageInput").value;
-        connection.invoke("SendMessage", currentUser, message).catch(function (err) {
+        connection.invoke("SendMessage", targetUserId, currentUser, message).catch(function (err) {
             return console.error(err.toString());
         });
-        // Save chat.
         
+        // Save chat.
         (async () => {
             const response = await fetch(`/chat/${targetUserId}?` + new URLSearchParams({
                 message: message

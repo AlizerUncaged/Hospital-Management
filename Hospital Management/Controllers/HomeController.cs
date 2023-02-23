@@ -197,6 +197,20 @@ public class HomeController : Controller
         return Redirect("/dentist-dashboard");
     }
 
+    [HttpPost("/appointments/done/{appointmentId}")]
+    public async Task<IActionResult> DoneAppointment(int appointmentId)
+    {
+        var appointment = await _dbContext.Appointments.FirstOrDefaultAsync(x => x.AppointmentId == appointmentId);
+
+        appointment.IsDone = true;
+        
+        _dbContext.Appointments.Update(appointment);
+
+        await _dbContext.SaveChangesAsync();
+
+        return Redirect("/dentist-dashboard");
+    }
+
     [HttpGet("/patients")]
     public async Task<IActionResult> PatientList()
     {
@@ -218,7 +232,7 @@ public class HomeController : Controller
         var targetUser = await _userManager.FindByIdAsync(targetId);
         return View(targetUser);
     }
-    
+
     [HttpGet("/messages")]
     public async Task<IActionResult> AdminMessaging()
     {
@@ -329,7 +343,7 @@ public class HomeController : Controller
     public async Task<IActionResult> Install()
     {
         await _roleCreation.CreateRolesAsync();
-        
+
         return Content("Database Reset!");
     }
 

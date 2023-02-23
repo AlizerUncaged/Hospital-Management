@@ -79,12 +79,16 @@
                             open = false;
                             if (appointment.Dentist.Id == currentDentist.Id)
                             {
-                                status = "Accepted (by you)";
+                                status = "Ongoing";
                             }
                             else
                             {
                                 status = "Accepted (by someone else)";
                             }
+                        }
+                        if (appointment.IsDone)
+                        {
+                            status = "Closed";
                         }
                         <tr>
                             <th scope="row">@appointment.AppointmentId</th>
@@ -106,6 +110,13 @@
                                     <a class="btn-danger btn rounded-3 m-1" href="/appointments/edit/@appointment.AppointmentId">
                                         <i class="bi bi-hand-thumbs-down-fill"></i> Hide
                                     </a>
+
+                                    if (appointment.Dentist.Id == currentDentist.Id)
+                                    {
+                                        <a class="btn-danger btn rounded-3 m-1" href="/appointments/done/@appointment.AppointmentId">
+                                            <i class="bi bi-hand-thumbs-up-fill"></i> Done
+                                        </a>
+                                    }
                                 }
                                 else
                                 {
