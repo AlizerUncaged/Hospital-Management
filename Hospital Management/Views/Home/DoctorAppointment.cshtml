@@ -111,12 +111,13 @@
                                         <i class="bi bi-hand-thumbs-down-fill"></i> Hide
                                     </a>
 
-                                    if (appointment.Dentist.Id == currentDentist.Id)
-                                    {
-                                        <a class="btn-danger btn rounded-3 m-1" href="/appointments/done/@appointment.AppointmentId">
-                                            <i class="bi bi-hand-thumbs-up-fill"></i> Done
-                                        </a>
-                                    }
+                                    if (appointment.Dentist is {} && currentDentist is {})
+                                        if (appointment.Dentist.Id == currentDentist.Id)
+                                        {
+                                            <a class="btn-danger btn rounded-3 m-1" href="/appointments/done/@appointment.AppointmentId">
+                                                <i class="bi bi-hand-thumbs-up-fill"></i> Done
+                                            </a>
+                                        }
                                 }
                                 else
                                 {
@@ -145,6 +146,8 @@
     </script>
         <!-- Modal -->
   
+
+
 
 
 
