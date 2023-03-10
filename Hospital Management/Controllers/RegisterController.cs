@@ -71,7 +71,6 @@ public class RegisterController : Controller
 
         await _dbContext.SaveChangesAsync();
 
-        await _signInManager.SignInAsync(newEntity.Entity, true);
 
         return RedirectPermanent("/");
     }
@@ -107,7 +106,6 @@ public class RegisterController : Controller
 
         await _dbContext.SaveChangesAsync();
 
-        await _signInManager.SignInAsync(newEntity.Entity, true);
 
         return Redirect("/");
     }

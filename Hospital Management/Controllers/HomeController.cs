@@ -60,7 +60,7 @@ public class HomeController : Controller
         var currentActiveAppointment = currentAppointment.FirstOrDefault(x =>
         {
             var difference = DateTime.Now - x.Date;
-            if (difference?.TotalMinutes <= 30 && difference?.TotalMinutes >= -30)
+            if (difference?.TotalMinutes <= 120 && difference?.TotalMinutes >= -120)
                 return true;
 
             return false;
