@@ -27,6 +27,10 @@ public class RoleCreation
 
         //initializing custom roles 
         string[] roleNames = { "Admin", "Dentist", "Patient" };
+
+        if (await _roleManager.RoleExistsAsync("Admin"))
+            return;
+        
         IdentityResult roleResult;
 
         foreach (var roleName in roleNames)
