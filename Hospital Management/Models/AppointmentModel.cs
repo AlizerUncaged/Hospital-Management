@@ -31,6 +31,8 @@ namespace Hospital_Management.Models
 
         public string MessageToPatient { get; set; } = string.Empty;
 
+        public string DeclinedBy { get; set; } = string.Empty;
+
         public double? TotalPrice { get; set; }
 
         /// <summary>

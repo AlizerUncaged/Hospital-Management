@@ -42,13 +42,11 @@ public class AppointmentController : Controller
         var appointment = await _dbContext.Appointments.AsNoTracking()
             .FirstOrDefaultAsync(x => x.AppointmentId == appointmentId);
 
-        var currentUser = await _userManager.GetUserAsync(User);
+        var currentDentist = await _userManager.GetUserAsync(User);
 
-        var dentist = await _dbContext.Dentists.FirstOrDefaultAsync(x => x.Id == currentUser.Id);
+        appointment.DeclinedBy += $"{currentDentist.Id},";
 
-        dentist.DeclinedAppointments.Add(appointment);
-        
-        _dbContext.Appointments.Remove(appointment);
+        _dbContext.Appointments.Update(appointment);
 
         await _dbContext.SaveChangesAsync();
 
