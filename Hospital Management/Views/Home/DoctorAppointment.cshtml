@@ -9,8 +9,7 @@
 
 @{
 
-    var currentDentist = await UserManager.GetUserAsync(User);
-
+    var currentDentist = (Dentist)await UserManager.GetUserAsync(User);
     var search = string.Empty;
     if (Context.Request.Query.TryGetValue("find", out var find))
     {
@@ -37,6 +36,7 @@
     }
     else
         appointmentModels = await appointments.ToListAsync();
+    
 
     // var patients = await DbContext.Patients.ToListAsync();
     // patients = patients.Where(x => x.UserName.ToLower().Contains(search.ToLower())).ToList();
@@ -90,13 +90,19 @@
                         {
                             status = "Closed";
                         }
+                        
+                        if (currentDentist.DeclinedAppointments.Contains(appointment))
+                        {
+                            status = "Declined";
+                        }
+
                         <tr>
                             <th scope="row">@appointment.AppointmentId</th>
                             <td>@appointment.Patient.FullName</td>
                             <td>@appointment.Date?.ToString("hh:mm tt")</td>
                             <td>@appointment.Date?.ToString("MMMM d, yyyy", new CultureInfo("en-US"))</td>
                             <td>@appointment.Services</td>
-                            <td>@status</td>
+                            <td class="@(status == "Declined" ? "text-danger" : "text-primary")">@status</td>
                             <td>
                                 @if (open)
                                 {
@@ -107,8 +113,8 @@
                                     <a class="btn-success btn rounded-3 m-1" href="/approve/@appointment.AppointmentId">
                                         <i class="bi bi-hand-thumbs-up-fill"></i> Accept
                                     </a>
-                                    <a class="btn-danger btn rounded-3 m-1" href="/appointments/edit/@appointment.AppointmentId">
-                                        <i class="bi bi-hand-thumbs-down-fill"></i> Hide
+                                    <a class="btn-danger btn rounded-3 m-1" href="/appointments/decline/@appointment.AppointmentId">
+                                        <i class="bi bi-hand-thumbs-down-fill"></i> Decline
                                     </a>
 
                                     if (appointment.Dentist is {} && currentDentist is {})

@@ -12,7 +12,8 @@ public class AppointmentController : Controller
     private readonly ApplicationDbContext _dbContext;
     private readonly UserManager<IdentityUser> _userManager;
 
-    public AppointmentController(ILogger<AppointmentController> logger, RoleCreation roleCreation, ApplicationDbContext dbContext,
+    public AppointmentController(ILogger<AppointmentController> logger, RoleCreation roleCreation,
+        ApplicationDbContext dbContext,
         UserManager<IdentityUser> userManager)
     {
         _logger = logger;
@@ -21,13 +22,32 @@ public class AppointmentController : Controller
         _userManager = userManager;
     }
 
-    
+
     [HttpGet("/delete/{appointmentId}")]
     public async Task<IActionResult> DeleteAppointment(int appointmentId)
     {
         var appointment = await _dbContext.Appointments.AsNoTracking()
             .FirstOrDefaultAsync(x => x.AppointmentId == appointmentId);
 
+        _dbContext.Appointments.Remove(appointment);
+
+        await _dbContext.SaveChangesAsync();
+
+        return Redirect("/");
+    }
+
+    [HttpGet("/appointments/decline/{appointmentId}")]
+    public async Task<IActionResult> DeclineAppointment(int appointmentId)
+    {
+        var appointment = await _dbContext.Appointments.AsNoTracking()
+            .FirstOrDefaultAsync(x => x.AppointmentId == appointmentId);
+
+        var currentUser = await _userManager.GetUserAsync(User);
+
+        var dentist = await _dbContext.Dentists.FirstOrDefaultAsync(x => x.Id == currentUser.Id);
+
+        dentist.DeclinedAppointments.Add(appointment);
+        
         _dbContext.Appointments.Remove(appointment);
 
         await _dbContext.SaveChangesAsync();
